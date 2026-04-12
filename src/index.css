@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  --bg-color: #FAFAF8;
+  --surface-color: #F2F2F0;
+  --surface-hover: #E8E8E5;
+  --text-primary: #0D0D0D;
+  --text-secondary: #888880;
+  --border-color: rgba(0, 0, 0, 0.08);
+
+  --accent-orange: #E8541A;
+  --accent-yellow: #F5C842;
+  --accent-dark: #181818;
+  --accent-green: #4CAF7D;
+  --accent-blue: #3B82F6;
+
+  --radius-sm: 10px;
+  --radius-md: 22px;
+  --radius-lg: 36px;
+  --radius-full: 100px;
+
+  --font-display: 'Outfit', -apple-system, sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent-orange);
+  color: #fff;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 5vw;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.label-text {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  display: inline-block;
+  font-family: var(--font-body);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--accent-orange), #f97316);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
