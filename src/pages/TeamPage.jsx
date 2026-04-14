@@ -145,9 +145,7 @@ export const TeamPage = () => (
         .t-card { padding: 1.25rem; }
       }
     `}} />
-  </div>
+  </main>
 );
-
-export default TeamPage;
 
 export default TeamPage;
