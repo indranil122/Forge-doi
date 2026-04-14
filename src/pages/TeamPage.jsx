@@ -56,7 +56,22 @@ export const TeamPage = () => (
         background: var(--bg);
         padding: 180px 0 100px;
         min-height: 100vh;
+        position: relative;
+        overflow: hidden;
       }
+      .team-page::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0; left: 0;
+        background: radial-gradient(circle at 10% 10%, var(--saffron-low), transparent 40%),
+                    radial-gradient(circle at 90% 90%, var(--green-low), transparent 40%);
+        opacity: 0.6;
+        pointer-events: none;
+        z-index: 0;
+      }
+      .container { position: relative; z-index: 1; }
       .team-intro {
         margin-bottom: 5rem;
       }

@@ -78,9 +78,6 @@ export const Home = () => {
           1. HERO
       ════════════════════════════════════════ */}
       <section className="hero" ref={heroRef}>
-        <div className="hero-bg-stripes" aria-hidden="true">
-          <span /><span /><span />
-        </div>
         <motion.div style={{ y: heroY, opacity: heroOpacity }} className="hero-inner container">
           <motion.div initial="hidden" animate="visible" variants={stagger}>
             <motion.p variants={fadeUp} className="label hero-label">
@@ -118,22 +115,11 @@ export const Home = () => {
           </motion.div>
         </motion.div>
 
-        {/* Scroll cue */}
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }}
-          className="scroll-cue">
-          <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}
-            className="scroll-cue-line" />
-        </motion.div>
       </section>
 
       {/* ════════════════════════════════════════
           INDIA TRICOLOUR STRIP
       ════════════════════════════════════════ */}
-      <div className="tricolour-strip" aria-hidden="true">
-        <span className="strip-saffron" />
-        <span className="strip-white" />
-        <span className="strip-green" />
-      </div>
 
       {/* ════════════════════════════════════════
           2. MISSION

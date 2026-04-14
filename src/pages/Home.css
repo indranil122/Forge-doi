@@ -14,21 +14,40 @@
   background: var(--bg);
 }
 
-/* Decorative vertical stripe columns in the background */
-.hero-bg-stripes {
+/* Modern Mesh Gradient Blobs */
+.hero::before,
+.hero::after {
+  content: '';
   position: absolute;
-  inset: 0;
-  display: flex;
-  gap: 0;
-  pointer-events: none;
+  width: 80vw;
+  height: 80vw;
+  border-radius: 50%;
+  filter: blur(120px);
   z-index: 0;
+  opacity: 0.15;
+  pointer-events: none;
+  animation: blob-float 20s infinite alternate ease-in-out;
 }
-.hero-bg-stripes span {
-  flex: 1;
-  border-right: 1px solid var(--border);
-  height: 100%;
+
+.hero::before {
+  top: -20%;
+  right: -10%;
+  background: radial-gradient(circle, var(--saffron), transparent 70%);
 }
-.hero-bg-stripes span:last-child { border-right: none; }
+
+.hero::after {
+  bottom: -20%;
+  left: -10%;
+  background: radial-gradient(circle, var(--india-green), transparent 70%);
+  animation-delay: -10s;
+}
+
+@keyframes blob-float {
+  0%   { transform: translate(0, 0) scale(1); }
+  50%  { transform: translate(5%, 5%) scale(1.1); }
+  100% { transform: translate(-5%, 2%) scale(0.95); }
+}
+
 
 .hero-inner {
   position: relative;
@@ -44,12 +63,16 @@
 
 .hero-title {
   font-family: var(--font-logo);
-  font-size: clamp(7rem, 18vw, 20rem);
+  font-size: clamp(4rem, 12vw, 16rem);
   font-weight: 900;
   letter-spacing: -0.06em;
-  line-height: 0.8;
+  line-height: 0.9;
   margin-bottom: 1.5rem;
-  color: var(--ink);
+  background: linear-gradient(to bottom right, var(--ink), rgba(0,0,0,0.6));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: var(--ink); /* Fallback */
+  padding-right: 0.05em; /* Prevent clipping of wide characters */
 }
 
 .hero-tagline {
@@ -92,34 +115,6 @@
   flex-wrap: wrap;
 }
 
-/* Scroll cue */
-.scroll-cue {
-  position: absolute;
-  bottom: 3rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-}
-.scroll-cue-line {
-  width: 1px;
-  height: 60px;
-  background: linear-gradient(to bottom, var(--saffron), transparent);
-}
-
-/* ══════════════════════════════════
-   TRICOLOUR STRIP
-══════════════════════════════════ */
-.tricolour-strip {
-  display: flex;
-  height: 4px;
-  width: 100%;
-}
-.strip-saffron { flex: 1; background: var(--saffron); }
-.strip-white   { flex: 1; background: #ffffff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-.strip-green   { flex: 1; background: var(--india-green); }
 
 /* ══════════════════════════════════
    MISSION
