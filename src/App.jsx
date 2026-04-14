@@ -3,11 +3,13 @@ import { Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Home } from './pages/Home';
 import TeamPage from './pages/TeamPage';
+import { Preloader } from './components/Preloader';
 import './App.css';
 
 function App() {
   return (
     <div className="app-container">
+      <Preloader />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

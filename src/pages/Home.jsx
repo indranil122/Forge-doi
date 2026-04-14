@@ -314,6 +314,24 @@ export const Home = () => {
             <p className="body-xl" style={{ marginTop: '1.5rem' }}>No simulation. No classroom. Just the market.</p>
           </Reveal>
 
+          <motion.div className="mandi-album" initial="hidden" whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }} variants={stagger}>
+            {[
+              { url: 'https://res.cloudinary.com/dzxejgtiw/image/upload/v1776171204/WhatsApp_Image_2026-04-14_at_6.21.34_PM_pbeslf.jpg', caption: 'The hustle begins' },
+              { url: 'https://res.cloudinary.com/dzxejgtiw/image/upload/v1776171204/WhatsApp_Image_2026-04-14_at_6.22.02_PM_z9g3kt.jpg', caption: 'Bartering at the source' },
+              { url: 'https://res.cloudinary.com/dzxejgtiw/image/upload/v1776171204/WhatsApp_Image_2026-04-14_at_6.22.32_PM_je8jd7.jpg', caption: 'Scaling the trade' }
+            ].map((img, i) => (
+              <motion.div key={i} variants={fadeUp} className="album-card">
+                <div className="album-img-wrapper">
+                  <img src={img.url} alt={img.caption} className="album-img" />
+                  <div className="album-overlay">
+                    <span className="album-caption">{img.caption}</span>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
           <motion.div className="mandi-grid" initial="hidden" whileInView="visible"
             viewport={{ once: true, margin: '-60px' }} variants={staggerFast}>
             {[
