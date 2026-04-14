@@ -2,10 +2,20 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 const fadeUp = {
-  hidden:  { opacity: 0, y: 32 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
+  hidden:  { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
 };
-const stagger = { visible: { transition: { staggerChildren: 0.1 } } };
+const stagger = { visible: { transition: { staggerChildren: 0.05 } } };
+
+const TEAM_MEMBERS = [
+  { name: "MANISH KONDA", role: "PRESIDENT", subtitle: "Head of Club" },
+  { name: "DWAIPAYAN PAL", role: "VICE PRESIDENT" },
+  { name: "ADITYA SINGH", role: "VICE PRESIDENT" },
+  { name: "HIMANI PURI", role: "CHIEF OF MANAGEMENT" },
+  { name: "PARTH GAUR", role: "CHIEF OF PERFORMANCE MONITORING" },
+  { name: "HARMANPREET SINGH", role: "CHIEF OF INDUSTRY RELATIONS" },
+  { name: "DIVYANSH MAURYA", role: "MANAGER R&D" },
+];
 
 const Card = ({ name, role, subtitle }) => (
   <motion.div variants={fadeUp} className="t-card">
@@ -18,90 +28,42 @@ const Card = ({ name, role, subtitle }) => (
   </motion.div>
 );
 
-const SectionTitle = ({ label, title }) => (
-  <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
-    className="t-section-title">
-    <p className="label">{label}</p>
-    <h2 className="display-lg" style={{ marginTop: '1rem' }}>{title}</h2>
-  </motion.div>
-);
-
 export const TeamPage = () => (
   <main className="team-page">
     <div className="container">
+      
+      <div className="team-intro">
+        <div className="tricolour-line" />
+        <p className="label" style={{ marginTop: '1.5rem' }}>The Forge Collective</p>
+      </div>
 
-      {/* Header */}
-      <header className="team-header">
-        <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.16,1,0.3,1] }}>
-          <div className="tricolour-line" style={{ marginBottom: '3rem' }} />
-          <p className="label">FORGE</p>
-          <h1 className="display-xl" style={{ marginTop: '1.5rem' }}>
-            Founding Team.
-          </h1>
-          <p className="body-xl" style={{ marginTop: '2rem', maxWidth: '500px' }}>
-            The original architects, builders, and operators who forged the foundation of FORGE at Bennett University.
-          </p>
-        </motion.div>
-      </header>
-
-      {/* President Section */}
-      <section className="team-tier">
-        <SectionTitle label="The Visionary" title="President." />
-        <motion.div className="tier-single" initial="hidden" whileInView="visible"
-          viewport={{ once: true }} variants={stagger}>
-          <Card name="MANISH KONDA" role="PRESIDENT" subtitle="Head of Club" />
-        </motion.div>
-      </section>
-
-      <hr className="ruling" />
-
-      {/* Vice Presidents Section */}
-      <section className="team-tier">
-        <SectionTitle label="The Operators" title="Vice Presidents." />
-        <motion.div className="tier-row-2" initial="hidden" whileInView="visible"
-          viewport={{ once: true }} variants={stagger}>
-          <Card name="DWAIPAYAN PAL" role="VICE PRESIDENT" />
-          <Card name="ADITYA SINGH" role="VICE PRESIDENT" />
-        </motion.div>
-      </section>
-
-      <hr className="ruling" />
-
-      {/* Chiefs Section */}
-      <section className="team-tier">
-        <SectionTitle label="The Executioners" title="Chiefs & Managers." />
-        <motion.div className="tier-row-2" initial="hidden" whileInView="visible"
-          viewport={{ once: true }} variants={stagger}>
-          <Card name="HIMANI PURI" role="CHIEF OF MANAGEMENT" />
-          <Card name="PARTH GAUR" role="CHIEF OF PERFORMANCE MONITORING" />
-        </motion.div>
-        
-        <motion.div className="tier-row-2" style={{ marginTop: '2rem' }} initial="hidden" whileInView="visible"
-          viewport={{ once: true }} variants={stagger}>
-          <Card name="HARMANPREET SINGH" role="CHIEF OF INDUSTRY RELATIONS" />
-          <Card name="DIVYANSH MAURYA" role="MANAGER R&D" />
-        </motion.div>
-      </section>
-
-      {/* Spacing for footer */}
-      <div style={{ paddingBottom: '10rem' }} />
+      <motion.div 
+        className="team-grid" 
+        initial="hidden" 
+        whileInView="visible"
+        viewport={{ once: true }} 
+        variants={stagger}
+      >
+        {TEAM_MEMBERS.map((member, idx) => (
+          <Card key={idx} {...member} />
+        ))}
+      </motion.div>
 
     </div>
 
     <style dangerouslySetInnerHTML={{ __html: `
       .team-page {
         background: var(--bg);
-        padding-top: 160px;
+        padding: 180px 0 100px;
+        min-height: 100vh;
       }
-      .team-header {
-        padding: 6rem 0 8rem;
-        border-bottom: 1px solid var(--border);
+      .team-intro {
+        margin-bottom: 5rem;
       }
       .tricolour-line {
         display: flex;
-        height: 4px;
-        width: 100px;
+        height: 3px;
+        width: 60px;
         overflow: hidden;
         border-radius: 4px;
       }
@@ -111,80 +73,81 @@ export const TeamPage = () => (
         flex: 1;
         background: var(--saffron);
       }
-      /* Middle section of tricolour-line is white-ish */
       .tricolour-line::after {
         content: '';
         display: block;
         flex: 1;
         background: var(--india-green);
       }
-      .team-tier {
-        padding: 7rem 0;
+      
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2rem;
       }
-      .t-section-title {
-        margin-bottom: 5rem;
-      }
-      .tier-single { max-width: 450px; }
-      .tier-row-2  { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; }
 
       .t-card {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 1.5rem;
         background: var(--paper);
         border: 1px solid var(--border);
-        border-radius: var(--r-md);
-        overflow: hidden;
-        transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s;
-        cursor: default;
+        border-radius: var(--r-lg);
+        transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
       }
       .t-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+        border-color: rgba(0,0,0,0.15);
       }
+      
       .t-avatar {
-        width: 100%;
-        aspect-ratio: 16/9; /* More minimalist cinematic feel */
-        background: linear-gradient(135deg, #f5f5f3 0%, #e9e9e2 100%);
-        position: relative;
-        overflow: hidden;
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+        flex-shrink: 0;
+        border: 1px solid var(--border);
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
       }
-      .t-avatar::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to top, rgba(0,0,0,0.05) 0%, transparent 50%);
+
+      .t-card-body {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
       }
-      .t-card-body { padding: 2.5rem; }
+
       .t-name {
-        display: block;
         font-family: var(--font-sans);
-        font-size: 1.25rem;
+        font-size: 0.95rem;
         font-weight: 800;
-        letter-spacing: -0.02em;
         color: var(--ink);
-        text-transform: uppercase;
+        letter-spacing: -0.01em;
       }
       .t-role {
-        display: block;
         font-family: var(--font-body);
-        font-size: 0.75rem;
+        font-size: 0.65rem;
         font-weight: 700;
-        letter-spacing: 0.12em;
+        letter-spacing: 0.08em;
         color: var(--saffron);
-        margin-top: 0.5rem;
         text-transform: uppercase;
       }
       .t-subtitle {
-        font-size: 0.85rem;
+        font-size: 0.75rem;
         color: var(--muted);
         font-weight: 500;
-        margin-top: 0.5rem;
       }
 
       @media (max-width: 768px) {
-        .tier-row-2 { grid-template-columns: 1fr; }
-        .team-page { padding-top: 100px; }
+        .team-page { padding-top: 140px; }
+        .team-grid { grid-template-columns: 1fr; }
+        .t-card { padding: 1.25rem; }
       }
     `}} />
-  </main>
+  </div>
 );
+
+export default TeamPage;
 
 export default TeamPage;
