@@ -43,9 +43,9 @@
 }
 
 .hero-title {
-  font-family: var(--font-serif);
+  font-family: var(--font-logo);
   font-size: clamp(7rem, 18vw, 20rem);
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: -0.06em;
   line-height: 0.8;
   margin-bottom: 1.5rem;
@@ -134,12 +134,9 @@
 
 .mission-headline {
   color: var(--ink);
-  font-family: var(--font-serif);
-  font-weight: 400; /* Lighter weight for elegance */
-  font-style: italic; /* Emphasize the "soft curves" */
+  font-weight: 600; 
   line-height: 1.1;
-  letter-spacing: -0.01em;
-  font-variation-settings: "opsz" 72; /* Use optical sizing for Fraunces if supported */
+  letter-spacing: -0.02em;
 }
 
 .mission-headline span {

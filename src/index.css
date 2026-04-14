@@ -18,7 +18,8 @@
   --green-low:   rgba(19,136,8,0.08);
 
   /* ── Type Scale ── */
-  --font-serif:  'Fraunces', serif;
+  --font-logo:   'Fraunces', serif;
+  --font-serif:  'Inter', sans-serif;
   --font-sans:   'Inter', sans-serif;
   --font-body:   'Inter', sans-serif;
 
