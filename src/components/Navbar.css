@@ -135,11 +135,15 @@
   color: #fff;
 }
 
-/* Mobile Menu */
+/* Mobile Menu Styling */
 @media (max-width: 1024px) {
   .nav-links { display: none; }
-  .mobile-toggle { display: block; }
+  .mobile-toggle { display: flex; align-items: center; justify-content: center; }
   .navbar { width: 92%; }
+  
+  .navbar.scrolled {
+    width: 92%;
+  }
 }
 
 .mobile-menu {
@@ -147,48 +151,66 @@
   top: calc(100% + 0.75rem);
   left: 0;
   right: 0;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  padding: 2rem;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
-  border-radius: 24px;
-  border: 1px solid rgba(0,0,0,0.05);
-  box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+  gap: 0.5rem;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(0, 0, 0, 0.02);
   overflow: hidden;
+  z-index: 10000;
 }
 
 .navbar.scrolled .mobile-menu {
-  background: rgba(20, 20, 20, 0.98);
-  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(20, 20, 20, 0.95);
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
 .mobile-link {
   font-family: var(--font-sans);
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--ink);
-  letter-spacing: -0.02em;
-  transition: all 0.2s ease;
+  letter-spacing: -0.01em;
+  padding: 1rem 1.25rem;
+  border-radius: 16px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .navbar.scrolled .mobile-link { color: #fff; }
 
-.mobile-link:hover { padding-left: 0.5rem; color: var(--saffron); }
+.mobile-link:hover { 
+  background: var(--saffron-low);
+  color: var(--saffron);
+  padding-left: 1.5rem;
+}
+
+.navbar.scrolled .mobile-link:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--saffron);
+}
 
 .mobile-cta {
-  margin-top: 0.5rem;
-  padding: 1rem;
+  margin-top: 1rem;
+  padding: 1.25rem;
   background: var(--ink);
   color: #fff;
-  border-radius: 16px;
+  border-radius: 18px;
   text-align: center;
   font-family: var(--font-sans);
   font-weight: 700;
   font-size: 1rem;
   transition: all 0.3s;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
 .navbar.scrolled .mobile-cta {
@@ -196,4 +218,13 @@
   color: var(--ink);
 }
 
-.mobile-cta:hover { background: var(--saffron); transform: scale(1.02); }
+.mobile-cta:hover { 
+  background: var(--saffron); 
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(255,153,51,0.3);
+}
+
+@media (max-width: 480px) {
+  .nav-inner { padding: 0.6rem 1.25rem; }
+  .nav-logo { font-size: 1.25rem; }
+}

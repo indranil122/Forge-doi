@@ -54,7 +54,7 @@ export const TeamPage = () => (
     <style dangerouslySetInnerHTML={{ __html: `
       .team-page {
         background: var(--bg);
-        padding: 180px 0 100px;
+        padding: clamp(8rem, 20vh, 12rem) 0 5rem;
         min-height: 100vh;
         position: relative;
         overflow: hidden;
@@ -73,7 +73,7 @@ export const TeamPage = () => (
       }
       .container { position: relative; z-index: 1; }
       .team-intro {
-        margin-bottom: 5rem;
+        margin-bottom: clamp(3rem, 10vw, 5rem);
       }
       .tricolour-line {
         display: flex;
@@ -97,15 +97,15 @@ export const TeamPage = () => (
       
       .team-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 2rem;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
       }
 
       .t-card {
         display: flex;
         align-items: center;
-        gap: 1.5rem;
-        padding: 1.5rem;
+        gap: 1.25rem;
+        padding: 1.25rem;
         background: var(--paper);
         border: 1px solid var(--border);
         border-radius: var(--r-lg);
@@ -118,8 +118,8 @@ export const TeamPage = () => (
       }
       
       .t-avatar {
-        width: 64px;
-        height: 64px;
+        width: 56px;
+        height: 56px;
         border-radius: 50%;
         background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
         flex-shrink: 0;
@@ -130,7 +130,7 @@ export const TeamPage = () => (
       .t-card-body {
         display: flex;
         flex-direction: column;
-        gap: 0.25rem;
+        gap: 0.2rem;
       }
 
       .t-name {
@@ -139,25 +139,30 @@ export const TeamPage = () => (
         font-weight: 800;
         color: var(--ink);
         letter-spacing: -0.01em;
+        line-height: 1.2;
       }
       .t-role {
         font-family: var(--font-body);
-        font-size: 0.65rem;
+        font-size: 0.6rem;
         font-weight: 700;
         letter-spacing: 0.08em;
         color: var(--saffron);
         text-transform: uppercase;
       }
       .t-subtitle {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         color: var(--muted);
         font-weight: 500;
       }
 
       @media (max-width: 768px) {
-        .team-page { padding-top: 140px; }
-        .team-grid { grid-template-columns: 1fr; }
-        .t-card { padding: 1.25rem; }
+        .team-grid { grid-template-columns: 1fr; gap: 1rem; }
+        .t-card { padding: 1rem; }
+        .t-avatar { width: 48px; height: 48px; }
+      }
+      @media (max-width: 480px) {
+        .team-page { padding-top: 8rem; }
+        .t-card { flex-direction: column; align-items: flex-start; gap: 1rem; }
       }
     `}} />
   </main>

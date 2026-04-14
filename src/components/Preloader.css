@@ -10,41 +10,14 @@
     background: transparent;
 }
 
-.loader-content {
-    position: relative;
+.loader-portal {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     z-index: 10002;
-    color: #fff;
-    /* Mirror .hero-inner padding exactly */
-    padding-top: 140px; 
-    padding-bottom: 80px;
-}
-
-/* Match the .hero-label space */
-.loader-label-placeholder {
-    height: calc(0.7rem * 1.6); /* label font size * line-height */
-    margin-bottom: 2.5rem; /* hero-label margin-bottom */
-}
-
-.loader-title {
-    font-family: var(--font-logo);
-    /* Mirror .hero-title exactly */
-    font-size: clamp(4rem, 12vw, 16rem);
-    font-weight: 900;
-    letter-spacing: -0.06em;
-    line-height: 0.9;
-    margin-bottom: 1.5rem; /* hero-title margin-bottom */
-    color: #fff;
-    text-transform: none;
-}
-
-.loader-subtitle {
-    font-family: var(--font-sans);
-    /* Aesthetic placement for the loader specific subtitle */
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.5em;
-    text-transform: uppercase;
-    color: var(--saffron);
+    pointer-events: none;
 }
 
 .curtain {
@@ -64,19 +37,9 @@
     bottom: 0;
 }
 
-/* Add a very subtle horizontal light beam at the split point before it opens */
-.curtain-top::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,153,51,0.2), transparent);
-}
-
 /* Prevent layout shift during animation */
 .app-container {
     opacity: 1;
     transition: opacity 1s ease;
 }
+

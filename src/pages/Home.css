@@ -52,21 +52,21 @@
 .hero-inner {
   position: relative;
   z-index: 1;
-  padding-top: 140px;
-  padding-bottom: 80px;
+  padding-top: clamp(8rem, 20vh, 12rem);
+  padding-bottom: 4rem;
 }
 
 .hero-label {
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   color: var(--muted);
 }
 
 .hero-title {
   font-family: var(--font-logo);
-  font-size: clamp(4rem, 12vw, 16rem);
+  font-size: clamp(3.2rem, 14vw, 16rem);
   font-weight: 900;
   letter-spacing: -0.06em;
-  line-height: 0.9;
+  line-height: 0.85;
   margin-bottom: 1.5rem;
   background: linear-gradient(to bottom right, var(--ink), rgba(0,0,0,0.6));
   -webkit-background-clip: text;
@@ -77,28 +77,28 @@
 
 .hero-tagline {
   font-family: var(--font-sans);
-  font-size: clamp(1.25rem, 3vw, 2.5rem);
+  font-size: clamp(1.1rem, 4vw, 2.5rem);
   font-weight: 400;
   color: var(--muted);
   letter-spacing: 0.02em;
-  margin-bottom: 4rem;
+  margin-bottom: clamp(2rem, 8vw, 4rem);
 }
 
 .hero-anchors {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-bottom: 3rem;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .hero-anchor-link {
   font-family: var(--font-body);
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 600;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
-  padding: 0.5rem 1rem;
+  padding: 0.4rem 0.8rem;
   border: 1px solid var(--border);
   border-radius: 100px;
   transition: all 0.25s ease;
@@ -111,7 +111,7 @@
 
 .hero-cta-row {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
   flex-wrap: wrap;
 }
 
@@ -658,26 +658,70 @@
 
 /* ══════════════════════════════════
    RESPONSIVE
+   Updated for Premium Mobile Experience
 ══════════════════════════════════ */
-@media (max-width: 1100px) {
-  .wr-list, .wr-top, .mission-layout, .workshop-grid, .conclave-inner, .mandi-album {
-    grid-template-columns: 1fr !important;
-    gap: 2rem;
+@media (max-width: 1200px) {
+  .container { padding: 0 4vw; }
+}
+
+@media (max-width: 1024px) {
+  .mission-layout {
+    grid-template-columns: 1fr;
+    gap: 4rem;
   }
-  .mandi-album { grid-template-columns: 1fr 1fr !important; }
-  .edge-grid { grid-template-columns: 1fr 1fr; }
-  .visit-timeline { grid-template-columns: 1fr 1fr; }
+  .wr-top {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+  .wr-list { grid-template-columns: 1fr; }
+  .workshop-grid { grid-template-columns: 1fr; }
+  .conclave-inner { grid-template-columns: 1fr; gap: 4rem; }
+  .mandi-album { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .mandi-grid { grid-template-columns: repeat(2, 1fr); }
+  .edge-grid { grid-template-columns: repeat(2, 1fr); }
+  .visit-timeline { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
-  .hero-title { font-size: clamp(5rem, 20vw, 8rem); }
+  .hero-inner { padding-top: 10rem; }
+  .hero-title { font-size: clamp(4rem, 18vw, 10rem); }
+  
   .wr-row { padding: 3rem 2rem; }
-  .wr-row-arrow { top: 2rem; right: 2rem; }
-  .mandi-album { grid-template-columns: 1fr !important; }
+  .wr-row-arrow { top: 2rem; right: 2rem; font-size: 1rem; }
+  
+  .skill-saturday-card { padding: 3rem 2rem; }
+  
+  .c-stat-body strong { font-size: 3.5rem; }
+  .conclave-stat { gap: 1.5rem; }
+  
+  .mandi-album { grid-template-columns: 1fr; gap: 1.5rem; }
   .mandi-grid { grid-template-columns: 1fr; }
+  
   .edge-grid { grid-template-columns: 1fr; }
   .visit-timeline { grid-template-columns: 1fr; }
-  .visit-step { border-right: none; border-bottom: 1px solid var(--border); padding: 2.5rem 0; }
+  
+  .visit-step { 
+    border-right: none; 
+    border-bottom: 1px solid var(--border); 
+    padding: 2rem 0; 
+  }
+  .visit-step:last-child { border-bottom: none; }
   .visit-step:not(:first-child) { padding-left: 0; }
-  .skill-saturday-card { padding: 2.5rem 2rem; }
+  
+  .saffron-divider { gap: 1rem; }
+  .sd-text { font-size: 0.6rem; letter-spacing: 0.15em; }
+}
+
+@media (max-width: 480px) {
+  .hero-inner { padding-top: 8rem; }
+  .btn-dark, .btn-outline { width: 100%; justify-content: center; }
+  .hero-cta-row { gap: 0.5rem; }
+  
+  .pillar-card { padding: 2rem; }
+  
+  .wr-row-title { font-size: 1.5rem; }
+  
+  .album-overlay { opacity: 1; background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 40%); padding: 1.5rem; }
+  .album-caption { transform: translateY(0); font-size: 0.75rem; }
 }

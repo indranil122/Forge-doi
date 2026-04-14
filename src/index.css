@@ -24,7 +24,7 @@
   --font-body:   'Inter', sans-serif;
 
   /* ── Spacing ── */
-  --section-pad: clamp(5rem, 10vw, 10rem);
+  --section-pad: clamp(4rem, 12vw, 10rem);
 
   /* ── Shape ── */
   --r-sm:  6px;
@@ -69,7 +69,7 @@ img { display: block; max-width: 100%; }
 .container {
   max-width: 1360px;
   margin: 0 auto;
-  padding: 0 clamp(1.5rem, 5vw, 5rem);
+  padding: 0 clamp(1.25rem, 6vw, 5rem);
 }
 
 /* ──────── Section Padding ──────── */
@@ -80,9 +80,9 @@ img { display: block; max-width: 100%; }
 /* ──────── Label ──────── */
 .label {
   font-family: var(--font-body);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--muted);
   display: inline-flex;
@@ -101,15 +101,15 @@ img { display: block; max-width: 100%; }
 /* ──────── Huge Headline ──────── */
 .display-xl {
   font-family: var(--font-serif);
-  font-size: clamp(3.5rem, 8vw, 9rem);
+  font-size: clamp(3.2rem, 10vw, 9rem);
   font-weight: 900;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.06em;
   line-height: 0.95;
 }
 
 .display-lg {
   font-family: var(--font-serif);
-  font-size: clamp(2.5rem, 5vw, 5.5rem);
+  font-size: clamp(2.2rem, 6vw, 5.5rem);
   font-weight: 800;
   letter-spacing: -0.04em;
   line-height: 1;
@@ -117,7 +117,7 @@ img { display: block; max-width: 100%; }
 
 .display-md {
   font-family: var(--font-sans);
-  font-size: clamp(1.5rem, 3vw, 2.75rem);
+  font-size: clamp(1.4rem, 4vw, 2.75rem);
   font-weight: 700;
   letter-spacing: -0.03em;
 }
@@ -125,9 +125,9 @@ img { display: block; max-width: 100%; }
 /* ──────── Section Descriptions ──────── */
 .body-xl {
   font-family: var(--font-body);
-  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-size: clamp(1rem, 1.5vw, 1.35rem);
   color: var(--muted);
-  line-height: 1.8;
+  line-height: 1.7;
   font-weight: 400;
 }
 

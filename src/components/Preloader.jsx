@@ -23,73 +23,76 @@ export const Preloader = () => {
       {loading && (
         <motion.div 
           className="preloader-overlay"
-          initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1.2, ease: "easeInOut", delay: 1.8 }}
+          transition={{ duration: 1, delay: 1.8 }}
         >
-          {/* Top Curtain - Slides UP */}
+          {/* Curtains */}
           <motion.div 
-            className="curtain curtain-top"
+            className="curtain curtain-top" 
             initial={{ height: '50vh' }}
             animate={{ height: '50vh' }}
-            exit={{ height: '0vh' }}
-            transition={{ duration: 2, ease: [0.77, 0, 0.175, 1], delay: 1.5 }}
+            exit={{ height: 0 }} 
+            transition={{ duration: 2, ease: [0.77, 0, 0.175, 1], delay: 1.5 }} 
           />
-          
-          {/* Bottom Curtain - Slides DOWN */}
           <motion.div 
-            className="curtain curtain-bottom"
+            className="curtain curtain-bottom" 
             initial={{ height: '50vh' }}
             animate={{ height: '50vh' }}
-            exit={{ height: '0vh' }}
-            transition={{ duration: 2, ease: [0.77, 0, 0.175, 1], delay: 1.5 }}
+            exit={{ height: 0 }} 
+            transition={{ duration: 2, ease: [0.77, 0, 0.175, 1], delay: 1.5 }} 
           />
 
-          {/* Cinematic Text matching Hero Layout */}
-          <div className="loader-content container">
-            <motion.div
-              initial="hidden"
-              animate="visible"
-              variants={{
-                hidden: { opacity: 0 },
-                visible: {
-                  opacity: 1,
-                  transition: { staggerChildren: 0.4 }
-                }
-              }}
-            >
-              {/* Dummy spacing to match Hero's label */}
-              <div className="loader-label-placeholder" />
-              
-              <motion.h1 
-                className="loader-title"
+          {/* This content matches the Hero section exactly */}
+          <div className="loader-portal">
+            <div className="hero-inner container">
+              <motion.div
+                initial="hidden"
+                animate="visible"
                 variants={{
-                  hidden: { opacity: 0, scale: 1.1, filter: 'blur(20px)' },
-                  visible: { 
-                    opacity: 1, 
-                    scale: 1,
-                    filter: 'blur(0px)',
-                    transition: { duration: 1.5, ease: [0.16, 1, 0.3, 1] } 
-                  }
+                  hidden: { opacity: 0 },
+                  visible: { opacity: 1, transition: { staggerChildren: 0.4 } }
                 }}
               >
-                FORGE.
-              </motion.h1>
-              
-              <motion.p 
-                className="loader-subtitle"
-                variants={{
-                  hidden: { opacity: 0, y: 10 },
-                  visible: { 
-                    opacity: 0.6, 
-                    y: 0,
-                    transition: { duration: 1.5, delay: 0.8 } 
-                  }
-                }}
-              >
-                A BENNETT INITIATIVE
-              </motion.p>
-            </motion.div>
+                <motion.p 
+                  variants={{
+                    hidden: { opacity: 0, y: 10 },
+                    visible: { opacity: 0.5, y: 0 }
+                  }}
+                  className="label hero-label"
+                  style={{ color: '#fff' }}
+                >
+                  Bennett University · Product Management Club
+                </motion.p>
+                
+                <motion.h1 
+                  variants={{
+                    hidden: { opacity: 0, scale: 1.05, filter: 'blur(15px)' },
+                    visible: { opacity: 1, scale: 1, filter: 'blur(0px)', transition: { duration: 1.5, ease: [0.16, 1, 0.3, 1] } }
+                  }}
+                  className="hero-title display-xl"
+                  style={{ color: '#fff', WebkitTextFillColor: '#fff', background: 'none' }}
+                >
+                  FORGE.
+                </motion.h1>
+
+                <motion.p
+                  variants={{
+                    hidden: { opacity: 0 },
+                    visible: { opacity: 0.4, transition: { delay: 1 } }
+                  }}
+                  style={{ 
+                    color: '#fff', 
+                    marginTop: '2rem', 
+                    letterSpacing: '0.6em', 
+                    fontSize: 'min(0.7rem, 2vw)',
+                    textTransform: 'uppercase',
+                    textAlign: 'left' // Match hero-title alignment
+                  }}
+                >
+                  A BENNETT INITIATIVE
+                </motion.p>
+              </motion.div>
+            </div>
           </div>
         </motion.div>
       )}
