@@ -9,29 +9,89 @@ const fadeUp = {
 const stagger = { visible: { transition: { staggerChildren: 0.05 } } };
 
 const TEAM_MEMBERS = [
-  { name: "MANISH KONDA", role: "PRESIDENT", subtitle: "Head of Club", linkedin: "https://linkedin.com" },
-  { name: "DWAIPAYAN PAL", role: "VICE PRESIDENT", linkedin: "https://linkedin.com" },
-  { name: "ADITYA SINGH", role: "VICE PRESIDENT", linkedin: "https://linkedin.com" },
-  { name: "HIMANI PURI", role: "CHIEF OF MANAGEMENT", linkedin: "https://linkedin.com" },
-  { name: "PARTH GAUR", role: "CHIEF OF PERFORMANCE MONITORING", linkedin: "https://linkedin.com" },
-  { name: "HARMANPREET SINGH", role: "CHIEF OF INDUSTRY RELATIONS", linkedin: "https://linkedin.com" },
-  { name: "DIVYANSH MAURYA", role: "MANAGER R&D", linkedin: "https://linkedin.com" },
+  { 
+    name: "MANISH KONDA", 
+    role: "PRESIDENT", 
+    subtitle: "Head of Club", 
+    linkedin: "https://linkedin.com",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&h=200&auto=format&fit=crop",
+    isPresident: true 
+  },
+  { 
+    name: "DWAIPAYAN PAL", 
+    role: "VICE PRESIDENT", 
+    linkedin: "https://linkedin.com",
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&h=200&auto=format&fit=crop"
+  },
+  { 
+    name: "ADITYA SINGH", 
+    role: "VICE PRESIDENT", 
+    linkedin: "https://linkedin.com",
+    image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=200&h=200&auto=format&fit=crop"
+  },
+  { 
+    name: "SHEEN RIZVI", 
+    role: "CHIEF OF MARKETING", 
+    linkedin: "https://linkedin.com",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&h=200&auto=format&fit=crop"
+  },
+  { 
+    name: "ANANY MISHRA", 
+    role: "CHIEF OF SPONSORSHIP", 
+    linkedin: "https://linkedin.com",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&h=200&auto=format&fit=crop"
+  },
+  { 
+    name: "HIMANI PURI", 
+    role: "CHIEF OF MANAGEMENT", 
+    linkedin: "https://linkedin.com",
+    image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=200&h=200&auto=format&fit=crop"
+  },
+  { 
+    name: "PARTH GAUR", 
+    role: "CHIEF OF PERFORMANCE MONITORING", 
+    linkedin: "https://linkedin.com",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&h=200&auto=format&fit=crop"
+  },
+  { 
+    name: "HARMANPREET SINGH", 
+    role: "CHIEF OF INDUSTRY RELATIONS", 
+    linkedin: "https://linkedin.com",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&h=200&auto=format&fit=crop"
+  },
+  { 
+    name: "DIVYANSH MAURYA", 
+    role: "MANAGER R&D", 
+    linkedin: "https://linkedin.com",
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&h=200&auto=format&fit=crop"
+  },
 ];
 
-const Card = ({ name, role, subtitle, linkedin }) => (
-  <motion.div variants={fadeUp} className="t-card">
-    <div className="t-avatar" />
+const Card = ({ name, role, subtitle, linkedin, image, isPresident }) => (
+  <motion.div variants={fadeUp} className={`t-card ${isPresident ? 't-president' : ''}`}>
+    <div className="t-avatar">
+      {image ? (
+        <img src={image} alt={name} className="t-img" />
+      ) : (
+        <div className="placeholder-silhouette" />
+      )}
+    </div>
     <div className="t-card-body">
-      <div className="t-header-row">
+      <div className="t-info">
         <span className="t-name">{name}</span>
+        <span className="t-role">{role}</span>
+        {subtitle && <p className="t-subtitle">{subtitle}</p>}
+      </div>
+      
+      <div className="t-link-row">
         {linkedin && (
-          <a href={linkedin} target="_blank" rel="noopener noreferrer" className="t-linkedin" aria-label={`${name} LinkedIn`}>
+          <a href={linkedin} target="_blank" rel="noopener noreferrer" className="t-social-link" title="LinkedIn">
             <ExternalLink size={14} />
           </a>
         )}
+        {/* Reservation for backend guy to add more links */}
+        <div className="backend-link-placeholder" title="Reserved for backend links" />
       </div>
-      <span className="t-role">{role}</span>
-      {subtitle && <p className="t-subtitle">{subtitle}</p>}
     </div>
   </motion.div>
 );
@@ -105,35 +165,72 @@ export const TeamPage = () => (
       
       .team-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+        gap: 2.5rem;
       }
 
       .t-card {
         display: flex;
         align-items: center;
-        gap: 1.5rem;
-        padding: 1.5rem;
+        gap: 2.5rem;
+        padding: 2.5rem;
         background: var(--paper);
         border: 1px solid var(--border);
-        border-radius: var(--r-lg);
-        transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+        border-radius: 2rem;
+        transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
         position: relative;
+        min-height: 180px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.02);
       }
       .t-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.06);
-        border-color: rgba(0,0,0,0.15);
+        transform: translateY(-8px);
+        box-shadow: 0 40px 80px rgba(0,0,0,0.08);
+        border-color: var(--saffron);
+      }
+      .t-card.t-president {
+        border-color: var(--saffron);
+        background: linear-gradient(135deg, rgba(246, 145, 30, 0.1), var(--paper));
+        box-shadow: 0 10px 40px rgba(246, 145, 30, 0.15);
+      }
+      .t-card.t-president .t-avatar {
+        width: 130px;
+        height: 130px;
+        border-color: var(--saffron);
+        box-shadow: 0 8px 30px rgba(246, 145, 30, 0.15);
+      }
+      .t-card.t-president .t-name {
+        font-size: 1.75rem;
+        color: var(--saffron);
+        letter-spacing: -0.03em;
       }
       
       .t-avatar {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+        width: 110px;
+        height: 110px;
+        border-radius: 2rem;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         flex-shrink: 0;
         border: 1px solid var(--border);
-        box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      }
+      
+      .t-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .placeholder-silhouette {
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 50% 40%, var(--muted) 25%, transparent 26%),
+                    radial-gradient(circle at 50% 120%, var(--muted) 45%, transparent 46%);
+        opacity: 0.2;
       }
 
       .t-card-body {
@@ -152,42 +249,63 @@ export const TeamPage = () => (
 
       .t-name {
         font-family: var(--font-sans);
-        font-size: 1rem;
+        font-size: 1.4rem;
         font-weight: 800;
         color: var(--ink);
-        letter-spacing: -0.01em;
-        line-height: 1.2;
-      }
-
-      .t-linkedin {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        background: var(--faint);
-        color: var(--muted);
-        transition: all 0.3s ease;
-      }
-      .t-linkedin:hover {
-        background: #0077b5;
-        color: #fff;
-        transform: scale(1.1);
+        letter-spacing: -0.025em;
+        line-height: 1.1;
       }
 
       .t-role {
+        display: block;
         font-family: var(--font-body);
-        font-size: 0.65rem;
+        font-size: 0.75rem;
         font-weight: 700;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.1em;
         color: var(--saffron);
         text-transform: uppercase;
+        margin-top: 0.25rem;
       }
       .t-subtitle {
-        font-size: 0.75rem;
+        font-size: 0.85rem;
         color: var(--muted);
         font-weight: 500;
+        line-height: 1.4;
+        margin-top: 0.2rem;
+      }
+
+      .t-link-row {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 1.25rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .t-social-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        background: var(--faint);
+        color: var(--muted);
+        transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+      }
+      .t-social-link:hover {
+        background: var(--saffron);
+        color: #fff;
+        transform: translateY(-3px);
+      }
+
+      .backend-link-placeholder {
+        width: 32px;
+        height: 32px;
+        border: 1px dashed var(--border);
+        border-radius: 8px;
+        opacity: 0.5;
       }
 
       @media (max-width: 768px) {
