@@ -43,3 +43,16 @@
     transition: opacity 1s ease;
 }
 
+
+.hero-logo-container {
+    margin: 1.5rem 0;
+    max-width: 450px;
+    width: 100%;
+}
+
+.preloader-logo {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}

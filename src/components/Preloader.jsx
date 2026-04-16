@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import forgeLogo from '../assets/forge-logo.png';
 import './Preloader.css';
 
 export const Preloader = () => {
@@ -11,7 +12,7 @@ export const Preloader = () => {
     const timer = setTimeout(() => {
       setLoading(false);
       document.body.style.overflow = 'auto';
-    }, 4500); // Longer wait for cinematic feel
+    }, 2000); // Shorter wait for a snappier start
     return () => {
       clearTimeout(timer);
       document.body.style.overflow = 'auto';
@@ -24,7 +25,7 @@ export const Preloader = () => {
         <motion.div 
           className="preloader-overlay"
           exit={{ opacity: 0 }}
-          transition={{ duration: 1, delay: 1.8 }}
+          transition={{ duration: 0.8, delay: 1.0 }}
         >
           {/* Curtains */}
           <motion.div 
@@ -32,14 +33,14 @@ export const Preloader = () => {
             initial={{ height: '50vh' }}
             animate={{ height: '50vh' }}
             exit={{ height: 0 }} 
-            transition={{ duration: 2, ease: [0.77, 0, 0.175, 1], delay: 1.5 }} 
+            transition={{ duration: 1.2, ease: [0.77, 0, 0.175, 1], delay: 0.8 }} 
           />
           <motion.div 
             className="curtain curtain-bottom" 
             initial={{ height: '50vh' }}
             animate={{ height: '50vh' }}
             exit={{ height: 0 }} 
-            transition={{ duration: 2, ease: [0.77, 0, 0.175, 1], delay: 1.5 }} 
+            transition={{ duration: 1.2, ease: [0.77, 0, 0.175, 1], delay: 0.8 }} 
           />
 
           {/* This content matches the Hero section exactly */}
@@ -50,7 +51,7 @@ export const Preloader = () => {
                 animate="visible"
                 variants={{
                   hidden: { opacity: 0 },
-                  visible: { opacity: 1, transition: { staggerChildren: 0.4 } }
+                  visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
                 }}
               >
                 <motion.p 
@@ -64,21 +65,20 @@ export const Preloader = () => {
                   Bennett University · Product Management Club
                 </motion.p>
                 
-                <motion.h1 
+                <motion.div 
                   variants={{
                     hidden: { opacity: 0, scale: 1.05, filter: 'blur(15px)' },
-                    visible: { opacity: 1, scale: 1, filter: 'blur(0px)', transition: { duration: 1.5, ease: [0.16, 1, 0.3, 1] } }
+                    visible: { opacity: 1, scale: 1, filter: 'blur(0px)', transition: { duration: 1.0, ease: [0.16, 1, 0.3, 1] } }
                   }}
-                  className="hero-title display-xl"
-                  style={{ color: '#fff', WebkitTextFillColor: '#fff', background: 'none' }}
+                  className="hero-logo-container"
                 >
-                  FORGE.
-                </motion.h1>
+                  <img src={forgeLogo} alt="FORGE Logo" className="preloader-logo" />
+                </motion.div>
 
                 <motion.p
                   variants={{
                     hidden: { opacity: 0 },
-                    visible: { opacity: 0.4, transition: { delay: 1 } }
+                    visible: { opacity: 0.4, transition: { delay: 0.6 } }
                   }}
                   style={{ 
                     color: '#fff', 

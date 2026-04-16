@@ -1,12 +1,30 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Home } from './pages/Home';
 import TeamPage from './pages/TeamPage';
+import ContactPage from './pages/ContactPage';
 import { Preloader } from './components/Preloader';
 import './App.css';
 
 function App() {
+  const navigate = useNavigate();
+
+  const handleFooterLink = (id) => {
+    if (window.location.pathname !== '/') {
+      navigate('/', { state: { scrollTo: id } });
+    } else {
+      const el = document.getElementById(id);
+      if (el) {
+        const offset = 100;
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elementRect = el.getBoundingClientRect().top;
+        const offsetPos = elementRect - bodyRect - offset;
+        window.scrollTo({ top: offsetPos, behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
     <div className="app-container">
       <Preloader />
@@ -14,6 +32,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/team" element={<TeamPage />} />
+        <Route path="/contact" element={<ContactPage />} />
       </Routes>
 
       <footer className="site-footer">
@@ -26,21 +45,21 @@ function App() {
             <div>
               <p className="footer-col-heading">Navigate</p>
               <div className="footer-links">
-                <a href="/" onClick={e => { e.preventDefault(); document.querySelector('#mission')?.scrollIntoView({ behavior: 'smooth' }); }}>Mission</a>
-                <a href="/#war-rooms">War Rooms</a>
-                <a href="/#workshops">Workshops</a>
-                <a href="/#industry-visits">Industry Visits</a>
-                <a href="/#conclave">Conclave</a>
-                <a href="/#mandi">Mandi</a>
+                <button className="footer-link-btn" onClick={() => handleFooterLink('mission')}>Mission</button>
+                <button className="footer-link-btn" onClick={() => handleFooterLink('war-rooms')}>War Rooms</button>
+                <button className="footer-link-btn" onClick={() => handleFooterLink('workshops')}>Workshops</button>
+                <button className="footer-link-btn" onClick={() => handleFooterLink('industry-visits')}>Industry Visits</button>
+                <button className="footer-link-btn" onClick={() => handleFooterLink('conclave')}>Conclave</button>
+                <button className="footer-link-btn" onClick={() => handleFooterLink('mandi')}>Mandi</button>
               </div>
             </div>
             <div>
               <p className="footer-col-heading">Organisation</p>
               <div className="footer-links">
-                <a href="/team">Team</a>
+                <Link to="/team">Team</Link>
                 <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
-                <a href="/#edge">Apply Now</a>
+                <Link to="/contact">Contact Us</Link>
               </div>
             </div>
           </div>

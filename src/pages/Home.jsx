@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import './Home.css';
 
@@ -49,7 +50,7 @@ const MissionHeadline = () => {
       style={{ y }}
       className="display-lg mission-headline"
     >
-      { "Bosch is a serif font, its soft curves and refined details create a sense of elegance.".split(' ').map((word, i) => (
+      { "To prepare students for high-responsibility roles through real world projects and industry exposure developing leadership, execution, and strategic thinking in a startup-style environment.".split(' ').map((word, i) => (
         <motion.span
           key={i}
           initial={{ opacity: 0, y: 20 }}
@@ -66,10 +67,35 @@ const MissionHeadline = () => {
 };
 
 export const Home = () => {
+  const location = useLocation();
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
   const heroY = useTransform(scrollYProgress, [0, 1], ['0%', '25%']);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+
+  // ── Smooth-scroll on mount if hash or state target is present ──
+  React.useEffect(() => {
+    const targetId = window.location.hash ? window.location.hash.slice(1) : location.state?.scrollTo;
+    
+    if (targetId) {
+      const el = document.getElementById(targetId);
+      if (el) {
+        // Delay slightly to ensure layout is ready and preloader is out
+        setTimeout(() => {
+          const offset = 100;
+          const bodyRect = document.body.getBoundingClientRect().top;
+          const elementRect = el.getBoundingClientRect().top;
+          const offsetPos = elementRect - bodyRect - offset;
+          window.scrollTo({ top: offsetPos, behavior: 'smooth' });
+          
+          // Clear state after scrolling to prevent re-triggering
+          if (location.state?.scrollTo) {
+            window.history.replaceState({}, document.title);
+          }
+        }, 300); // 300ms to be safe with preloader/motion
+      }
+    }
+  }, [location]);
 
   return (
     <main className="home">
@@ -91,26 +117,24 @@ export const Home = () => {
             </motion.p>
             <motion.div variants={fadeUp} className="hero-anchors">
               {['WAR ROOMS','WORKSHOPS','INDUSTRY VISITS','CONCLAVE','MANDI'].map((label, i) => (
-                <a key={i} href={`#${label.toLowerCase().replace(' ', '-')}`}
-                  onClick={e => {
-                    e.preventDefault();
-                    document.querySelector(`#${label.toLowerCase().replace(/\s+/g, '-')}`)
+                <button key={i} 
+                  onClick={() => {
+                    document.getElementById(label.toLowerCase().replace(/\s+/g, '-'))
                       ?.scrollIntoView({ behavior: 'smooth' });
                   }}
                   className="hero-anchor-link">
                   {label}
-                </a>
+                </button>
               ))}
             </motion.div>
             <motion.div variants={fadeUp} className="hero-cta-row">
-              <a href="#edge" onClick={e => { e.preventDefault(); document.querySelector('#edge')?.scrollIntoView({ behavior: 'smooth' }); }}
-                className="btn-dark">
-                Join FORGE →
-              </a>
-              <a href="#mission" onClick={e => { e.preventDefault(); document.querySelector('#mission')?.scrollIntoView({ behavior: 'smooth' }); }}
+              <Link to="/contact" className="btn-dark">
+                Contact Us →
+              </Link>
+              <button onClick={() => document.getElementById('mission')?.scrollIntoView({ behavior: 'smooth' })}
                 className="btn-outline">
                 Our Mission
-              </a>
+              </button>
             </motion.div>
           </motion.div>
         </motion.div>

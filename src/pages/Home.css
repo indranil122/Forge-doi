@@ -61,6 +61,19 @@
   color: var(--muted);
 }
 
+.hero-logo-container {
+  margin-bottom: 2rem;
+  max-width: clamp(280px, 50vw, 800px);
+  width: 100%;
+}
+
+.hero-logo {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
 .hero-title {
   font-family: var(--font-logo);
   font-size: clamp(3.2rem, 14vw, 16rem);
@@ -129,9 +142,10 @@
 
 .mission-headline {
   color: var(--ink);
+  font-size: clamp(1.5rem, 3.5vw, 2.75rem);
   font-weight: 600; 
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
 }
 
 .mission-headline span {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { ExternalLink } from 'lucide-react';
 
 const fadeUp = {
   hidden:  { opacity: 0, y: 20 },
@@ -8,20 +9,27 @@ const fadeUp = {
 const stagger = { visible: { transition: { staggerChildren: 0.05 } } };
 
 const TEAM_MEMBERS = [
-  { name: "MANISH KONDA", role: "PRESIDENT", subtitle: "Head of Club" },
-  { name: "DWAIPAYAN PAL", role: "VICE PRESIDENT" },
-  { name: "ADITYA SINGH", role: "VICE PRESIDENT" },
-  { name: "HIMANI PURI", role: "CHIEF OF MANAGEMENT" },
-  { name: "PARTH GAUR", role: "CHIEF OF PERFORMANCE MONITORING" },
-  { name: "HARMANPREET SINGH", role: "CHIEF OF INDUSTRY RELATIONS" },
-  { name: "DIVYANSH MAURYA", role: "MANAGER R&D" },
+  { name: "MANISH KONDA", role: "PRESIDENT", subtitle: "Head of Club", linkedin: "https://linkedin.com" },
+  { name: "DWAIPAYAN PAL", role: "VICE PRESIDENT", linkedin: "https://linkedin.com" },
+  { name: "ADITYA SINGH", role: "VICE PRESIDENT", linkedin: "https://linkedin.com" },
+  { name: "HIMANI PURI", role: "CHIEF OF MANAGEMENT", linkedin: "https://linkedin.com" },
+  { name: "PARTH GAUR", role: "CHIEF OF PERFORMANCE MONITORING", linkedin: "https://linkedin.com" },
+  { name: "HARMANPREET SINGH", role: "CHIEF OF INDUSTRY RELATIONS", linkedin: "https://linkedin.com" },
+  { name: "DIVYANSH MAURYA", role: "MANAGER R&D", linkedin: "https://linkedin.com" },
 ];
 
-const Card = ({ name, role, subtitle }) => (
+const Card = ({ name, role, subtitle, linkedin }) => (
   <motion.div variants={fadeUp} className="t-card">
     <div className="t-avatar" />
     <div className="t-card-body">
-      <span className="t-name">{name}</span>
+      <div className="t-header-row">
+        <span className="t-name">{name}</span>
+        {linkedin && (
+          <a href={linkedin} target="_blank" rel="noopener noreferrer" className="t-linkedin" aria-label={`${name} LinkedIn`}>
+            <ExternalLink size={14} />
+          </a>
+        )}
+      </div>
       <span className="t-role">{role}</span>
       {subtitle && <p className="t-subtitle">{subtitle}</p>}
     </div>
@@ -97,19 +105,20 @@ export const TeamPage = () => (
       
       .team-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
         gap: 1.5rem;
       }
 
       .t-card {
         display: flex;
         align-items: center;
-        gap: 1.25rem;
-        padding: 1.25rem;
+        gap: 1.5rem;
+        padding: 1.5rem;
         background: var(--paper);
         border: 1px solid var(--border);
         border-radius: var(--r-lg);
         transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+        position: relative;
       }
       .t-card:hover {
         transform: translateY(-5px);
@@ -118,8 +127,8 @@ export const TeamPage = () => (
       }
       
       .t-avatar {
-        width: 56px;
-        height: 56px;
+        width: 80px;
+        height: 80px;
         border-radius: 50%;
         background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
         flex-shrink: 0;
@@ -131,34 +140,60 @@ export const TeamPage = () => (
         display: flex;
         flex-direction: column;
         gap: 0.2rem;
+        flex: 1;
+      }
+
+      .t-header-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem;
       }
 
       .t-name {
         font-family: var(--font-sans);
-        font-size: 0.95rem;
+        font-size: 1rem;
         font-weight: 800;
         color: var(--ink);
         letter-spacing: -0.01em;
         line-height: 1.2;
       }
+
+      .t-linkedin {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: var(--faint);
+        color: var(--muted);
+        transition: all 0.3s ease;
+      }
+      .t-linkedin:hover {
+        background: #0077b5;
+        color: #fff;
+        transform: scale(1.1);
+      }
+
       .t-role {
         font-family: var(--font-body);
-        font-size: 0.6rem;
+        font-size: 0.65rem;
         font-weight: 700;
         letter-spacing: 0.08em;
         color: var(--saffron);
         text-transform: uppercase;
       }
       .t-subtitle {
-        font-size: 0.7rem;
+        font-size: 0.75rem;
         color: var(--muted);
         font-weight: 500;
       }
 
       @media (max-width: 768px) {
         .team-grid { grid-template-columns: 1fr; gap: 1rem; }
-        .t-card { padding: 1rem; }
-        .t-avatar { width: 48px; height: 48px; }
+        .t-card { padding: 1.25rem; }
+        .t-avatar { width: 64px; height: 64px; }
       }
       @media (max-width: 480px) {
         .team-page { padding-top: 8rem; }
