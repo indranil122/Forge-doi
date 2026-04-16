@@ -50,7 +50,7 @@ export const Navbar = () => {
       <div className="nav-inner">
         {/* Logo */}
         <Link to="/" className="nav-logo">
-          FORGE<span className="nav-logo-dot" />
+          FORGE
         </Link>
 
         {/* ── Desktop links ── */}

@@ -1,98 +1,117 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import forgeLogo from '../assets/forge-logo.png';
 import './Preloader.css';
 
 export const Preloader = () => {
   const [loading, setLoading] = useState(true);
+  const [percent, setPercent] = useState(0);
 
   useEffect(() => {
     // Prevent scrolling while loading
     document.body.style.overflow = 'hidden';
+    
+    // Simulate loading progress
+    const interval = setInterval(() => {
+      setPercent(prev => {
+        if (prev >= 100) {
+          clearInterval(interval);
+          return 100;
+        }
+        return prev + Math.floor(Math.random() * 15) + 5;
+      });
+    }, 150);
+
     const timer = setTimeout(() => {
       setLoading(false);
       document.body.style.overflow = 'auto';
-    }, 2000); // Shorter wait for a snappier start
+    }, 2800); 
+
     return () => {
+      clearInterval(interval);
       clearTimeout(timer);
       document.body.style.overflow = 'auto';
     };
   }, []);
+
+  const words = ["STRATEGY", "EXECUTION", "LEADERSHIP"];
 
   return (
     <AnimatePresence>
       {loading && (
         <motion.div 
           className="preloader-overlay"
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8, delay: 1.0 }}
+          initial={{ opacity: 1 }}
+          exit={{ 
+            y: '-100%',
+            transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1], delay: 0.2 } 
+          }}
         >
-          {/* Curtains */}
-          <motion.div 
-            className="curtain curtain-top" 
-            initial={{ height: '50vh' }}
-            animate={{ height: '50vh' }}
-            exit={{ height: 0 }} 
-            transition={{ duration: 1.2, ease: [0.77, 0, 0.175, 1], delay: 0.8 }} 
-          />
-          <motion.div 
-            className="curtain curtain-bottom" 
-            initial={{ height: '50vh' }}
-            animate={{ height: '50vh' }}
-            exit={{ height: 0 }} 
-            transition={{ duration: 1.2, ease: [0.77, 0, 0.175, 1], delay: 0.8 }} 
-          />
-
-          {/* This content matches the Hero section exactly */}
-          <div className="loader-portal">
-            <div className="hero-inner container">
-              <motion.div
-                initial="hidden"
-                animate="visible"
-                variants={{
-                  hidden: { opacity: 0 },
-                  visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
-                }}
-              >
-                <motion.p 
-                  variants={{
-                    hidden: { opacity: 0, y: 10 },
-                    visible: { opacity: 0.5, y: 0 }
-                  }}
-                  className="label hero-label"
-                  style={{ color: '#fff' }}
+          <div className="preloader-content">
+            {/* Word Cycle */}
+            <div className="word-cycle">
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={Math.floor(percent / 33.4)}
+                  initial={{ y: 20, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: -20, opacity: 0 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="cycle-word"
                 >
-                  Bennett University · Product Management Club
-                </motion.p>
-                
-                <motion.div 
-                  variants={{
-                    hidden: { opacity: 0, scale: 1.05, filter: 'blur(15px)' },
-                    visible: { opacity: 1, scale: 1, filter: 'blur(0px)', transition: { duration: 1.0, ease: [0.16, 1, 0.3, 1] } }
-                  }}
-                  className="hero-logo-container"
-                >
-                  <img src={forgeLogo} alt="FORGE Logo" className="preloader-logo" />
-                </motion.div>
-
-                <motion.p
-                  variants={{
-                    hidden: { opacity: 0 },
-                    visible: { opacity: 0.4, transition: { delay: 0.6 } }
-                  }}
-                  style={{ 
-                    color: '#fff', 
-                    marginTop: '2rem', 
-                    letterSpacing: '0.6em', 
-                    fontSize: 'min(0.7rem, 2vw)',
-                    textTransform: 'uppercase',
-                    textAlign: 'left' // Match hero-title alignment
-                  }}
-                >
-                  A BENNETT INITIATIVE
-                </motion.p>
-              </motion.div>
+                  {words[Math.min(Math.floor(percent / 33.4), words.length - 1)]}
+                </motion.span>
+              </AnimatePresence>
             </div>
+
+            {/* Main Title Reveal */}
+            <div className="main-reveal">
+              <motion.h1 
+                initial={{ letterSpacing: '1.2em', opacity: 0, filter: 'blur(10px)' }}
+                animate={{ 
+                  letterSpacing: '0.4em', 
+                  opacity: 1, 
+                  filter: 'blur(0px)',
+                  transition: { duration: 1.5, ease: [0.16, 1, 0.3, 1] } 
+                }}
+                className="preloader-title"
+              >
+                FORGE
+              </motion.h1>
+              
+              {/* Animated Underline */}
+              <motion.div 
+                className="preloader-line"
+                initial={{ width: 0 }}
+                animate={{ width: '100%', transition: { duration: 1.2, ease: "easeInOut", delay: 0.5 } }}
+              />
+            </div>
+
+            {/* Progress Info */}
+            <div className="progress-container">
+              <motion.div 
+                className="progress-bar"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: percent / 100 }}
+                style={{ originX: 0 }}
+              />
+              <div className="progress-details">
+                <span className="location-tag">BU · PMC</span>
+                <span className="percent-text">{Math.min(percent, 100)}%</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Decorative Elements */}
+          <div className="preloader-bg-decor">
+            <div className="decor-grid" />
+            <motion.div 
+              className="decor-gradient"
+              animate={{ 
+                opacity: [0.3, 0.5, 0.3],
+                scale: [1, 1.1, 1]
+              }}
+              transition={{ duration: 4, repeat: Infinity }}
+            />
           </div>
         </motion.div>
       )}

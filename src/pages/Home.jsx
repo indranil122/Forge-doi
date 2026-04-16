@@ -110,7 +110,7 @@ export const Home = () => {
               Bennett University · Product Management Club
             </motion.p>
             <motion.h1 variants={fadeUp} className="hero-title display-xl">
-              FORGE.
+              FORGE
             </motion.h1>
             <motion.p variants={fadeUp} className="hero-tagline">
               Forge. Build. Execute.

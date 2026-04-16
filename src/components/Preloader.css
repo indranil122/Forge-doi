@@ -2,57 +2,131 @@
 .preloader-overlay {
     position: fixed;
     inset: 0;
-    z-index: 10000;
+    z-index: 99999;
+    background: #0D0D0D;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     overflow: hidden;
-    pointer-events: none;
-    background: transparent;
+    color: #FFFFFF;
 }
 
-.loader-portal {
+.preloader-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+}
+
+/* Word Cycle Rendering */
+.word-cycle {
+    height: 24px;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cycle-word {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    color: var(--saffron);
+    text-transform: uppercase;
+}
+
+/* Main Title */
+.main-reveal {
+    position: relative;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.preloader-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    font-weight: 900;
+    margin: 0;
+    line-height: 1;
+    color: #FFFFFF;
+    text-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+}
+
+.preloader-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+    margin-top: 1rem;
+}
+
+/* Progress Section */
+.progress-container {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.progress-bar {
+    height: 2px;
+    background: var(--saffron);
+    width: 100%;
+    box-shadow: 0 0 15px var(--saffron);
+    margin-bottom: 0.75rem;
+}
+
+.progress-details {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-family: var(--font-sans);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+}
+
+.percent-text {
+    color: #FFFFFF;
+}
+
+/* Background Decorations */
+.preloader-bg-decor {
     position: absolute;
     inset: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    z-index: 10002;
-    pointer-events: none;
+    z-index: 1;
 }
 
-.curtain {
+.decor-grid {
     position: absolute;
-    left: 0;
-    width: 100%;
-    background: #000;
-    z-index: 10001;
-    pointer-events: auto;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(circle at center, black, transparent 80%);
 }
 
-.curtain-top {
-    top: 0;
+.decor-gradient {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(255, 153, 51, 0.08) 0%, transparent 70%);
+    filter: blur(60px);
 }
 
-.curtain-bottom {
-    bottom: 0;
-}
-
-/* Prevent layout shift during animation */
-.app-container {
-    opacity: 1;
-    transition: opacity 1s ease;
-}
-
-
-.hero-logo-container {
-    margin: 1.5rem 0;
-    max-width: 450px;
-    width: 100%;
-}
-
-.preloader-logo {
-    width: 100%;
-    height: auto;
-    display: block;
-    object-fit: contain;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .preloader-title {
+        font-size: 3rem;
+    }
+    .preloader-content {
+        max-width: 300px;
+    }
 }

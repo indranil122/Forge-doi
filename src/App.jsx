@@ -39,7 +39,7 @@ function App() {
         <div className="container">
           <div className="footer-grid">
             <div className="footer-brand-col">
-              <div className="footer-wordmark">FORGE.</div>
+              <div className="footer-wordmark">FORGE</div>
               <p>Bennett University's home for product thinking, real-world execution, and leadership development.</p>
             </div>
             <div>
