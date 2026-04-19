@@ -77,7 +77,7 @@ function App() {
           </div>
           <div className="footer-bottom">
             <p>© 2026 FORGE · Bennett University. All rights reserved.</p>
-            <p>Product Management Club — Greater Noida, India</p>
+            <p>Product Management Club · Greater Noida, India</p>
           </div>
         </div>
       </footer>

@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import './Home.css';
 
-/* ── Animation Variants ── */
+/* Animation Variants */
 const fadeUp = {
   hidden:  { opacity: 0, y: 48 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } },
@@ -19,7 +19,7 @@ const fadeRight = {
 const stagger = { visible: { transition: { staggerChildren: 0.12 } } };
 const staggerFast = { visible: { transition: { staggerChildren: 0.07 } } };
 
-/* ── Reusable animated wrapper ── */
+/* Reusable animated wrapper */
 const Reveal = ({ children, variants = fadeUp, className = '', delay = 0 }) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
@@ -32,10 +32,10 @@ const Reveal = ({ children, variants = fadeUp, className = '', delay = 0 }) => {
   );
 };
 
-/* ── Pill number badge ── */
+/* Pill number badge */
 const Num = ({ n }) => <span className="num-badge">{n}</span>;
 
-/* ── Dynamic Mission Headline ── */
+/* Dynamic Mission Headline */
 const MissionHeadline = () => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -73,7 +73,7 @@ export const Home = () => {
   const heroY = useTransform(scrollYProgress, [0, 1], ['0%', '25%']);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
-  // ── Smooth-scroll on mount if hash or state target is present ──
+  /* Smooth-scroll on mount if hash or state target is present */
   React.useEffect(() => {
     const targetId = window.location.hash ? window.location.hash.slice(1) : location.state?.scrollTo;
     
@@ -100,9 +100,8 @@ export const Home = () => {
   return (
     <main className="home">
 
-      {/* ════════════════════════════════════════
           1. HERO
-      ════════════════════════════════════════ */}
+      */
       <section className="hero" ref={heroRef}>
         <motion.div style={{ y: heroY, opacity: heroOpacity }} className="hero-inner container">
           <motion.div initial="hidden" animate="visible" variants={stagger}>
@@ -141,13 +140,7 @@ export const Home = () => {
 
       </section>
 
-      {/* ════════════════════════════════════════
-          INDIA TRICOLOUR STRIP
-      ════════════════════════════════════════ */}
-
-      {/* ════════════════════════════════════════
-          2. MISSION
-      ════════════════════════════════════════ */}
+      {/* 2. MISSION */}
       <section id="mission" className="section-pad">
         <div className="container">
           <Reveal>
@@ -159,7 +152,7 @@ export const Home = () => {
             </Reveal>
             <motion.div ref={useRef(null)} className="mission-pillars">
               {[
-                { icon: '⚡', title: 'Real-Time Projects', desc: 'Hands-on experience with live builds — not simulations.' },
+                { icon: '⚡', title: 'Real-Time Projects', desc: 'Hands-on experience with live builds, not simulations.' },
                 { icon: '♟', title: 'Strategic Thinking',  desc: 'Developing the analytical mindset for product leadership.' },
                 { icon: '🎯', title: 'Leadership Exposure', desc: 'Direct interaction with founders and top-tier operators.' },
               ].map((p, i) => (
@@ -197,10 +190,10 @@ export const Home = () => {
           <motion.div className="wr-list" initial="hidden" whileInView="visible"
             viewport={{ once: true, margin: '-60px' }} variants={stagger}>
             {[
-              { num: '01', title: 'Case Cracking Fridays', path: '/war-rooms/case-cracking-fridays', desc: 'Live weekly debate on business news, mergers & geopolitics. Learning is peer-to-peer — not from slides.' },
+              { num: '01', title: 'Case Cracking Fridays', path: '/war-rooms/case-cracking-fridays', desc: 'Live weekly debate on business news, mergers & geopolitics. Learning is peer-to-peer, not from slides.' },
               { num: '02', title: 'Startup Postmortem',     path: '/war-rooms/startup-postmortem',     desc: 'Forensic deep-dive into real failed startups. Data-backed. Closes with a pattern playbook.' },
               { num: '03', title: '1 Hour MVP',             path: '/war-rooms/1-hour-mvp',             desc: 'Choose an industry. Build a product concept in 60 minutes flat. Judged on speed, creativity, viability.' },
-              { num: '04', title: 'Product MUN',            path: '/war-rooms/product-mun',            desc: 'MUN structure — but participants represent products & brands, not countries. Debate, negotiate, outmanoeuvre.' },
+              { num: '04', title: 'Product MUN',            path: '/war-rooms/product-mun',            desc: 'MUN structure, but participants represent products & brands, not countries. Debate, negotiate, outmanoeuvre.' },
             ].map(r => (
               <motion.div key={r.num} variants={fadeUp}>
                 <Link to={r.path} className="wr-row">
@@ -228,7 +221,7 @@ export const Home = () => {
                 <p className="label" style={{ marginBottom: '2rem' }}>Workshops</p>
                 <h2 className="display-md">1–2 day hands-on sessions with leading practitioners.</h2>
                 <p className="body-xl" style={{ marginTop: '2rem' }}>
-                  Participants leave with tangible, real output — not just motivation.
+                  Participants leave with tangible, real output, not just motivation.
                 </p>
               </Reveal>
               <Reveal delay={0.2} className="guest-tags">
@@ -257,7 +250,7 @@ export const Home = () => {
       <Reveal className="saffron-divider-wrap">
         <div className="saffron-divider container">
           <span className="sd-line" />
-          <span className="sd-text">FORGE — Bennett University</span>
+          <span className="sd-text">FORGE · Bennett University</span>
           <span className="sd-line" />
         </div>
       </Reveal>
@@ -278,7 +271,7 @@ export const Home = () => {
           <motion.div className="visit-timeline" initial="hidden" whileInView="visible"
             viewport={{ once: true, margin: '-60px' }} variants={stagger}>
             {[
-              { num: '01', title: 'Startup Office Visit',    desc: 'Physically taken to a real startup office — not a virtual tour, not a webinar.' },
+              { num: '01', title: 'Startup Office Visit',    desc: 'Physically taken to a real startup office, not a virtual tour, not a webinar.' },
               { num: '02', title: 'Team Formation',          desc: 'Observe operations, workflow, culture and problems on the ground.' },
               { num: '03', title: 'Post-Visit PPT Report',   desc: 'Each team compiles findings and proposed solutions into a structured deck.' },
               { num: '04', title: 'Judging & Prize',         desc: 'FORGE judges evaluate decks on insight depth and solution quality.' },
@@ -312,7 +305,7 @@ export const Home = () => {
                 <div className="c-bar" style={{ '--fill': '40%', '--color': 'var(--saffron)' }} />
                 <div className="c-stat-body">
                   <strong>40%</strong>
-                  <span>Talk & Speech<br /><small>Structured session — journey, decisions, lessons.</small></span>
+                  <span>Talk & Speech<br /><small>Structured session: journey, decisions, lessons.</small></span>
                 </div>
               </Reveal>
               <Reveal variants={fadeRight} delay={0.25} className="conclave-stat">

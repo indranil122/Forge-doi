@@ -89,14 +89,6 @@ img { display: block; max-width: 100%; }
   align-items: center;
   gap: 0.75rem;
 }
-.label::before {
-  content: '';
-  display: inline-block;
-  width: 20px;
-  height: 1px;
-  background: currentColor;
-  flex-shrink: 0;
-}
 
 /* ──────── Huge Headline ──────── */
 .display-xl {

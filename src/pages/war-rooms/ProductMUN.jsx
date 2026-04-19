@@ -32,7 +32,7 @@ const ProductMUN = () => {
                 Product <span className="italic">MUN.</span>
               </motion.h1>
               <motion.p variants={fadeUp} className="body-xl wr-detail-tagline">
-                Negotiation, Diplomacy, and Strategy — through the lens of brands.
+                Negotiation, Diplomacy, and Strategy: through the lens of brands.
               </motion.p>
             </div>
           </div>
@@ -80,7 +80,7 @@ const ProductMUN = () => {
               {[
                 { title: 'The Gavel', desc: 'Rules of procedure are strict. You must represent your brand\'s ethos. If you are Apple, you are secretive and premium. If you are Amazon, you are aggressive and frugal.' },
                 { title: 'The Crisis', desc: 'A mid-session "Crisis Update" forces brands to form unexpected alliances. Imagine Uber and Tesla negotiating a self-driving deal in 15 minutes.' },
-                { title: 'The Resolution', desc: 'The committee must pass a joint resolution that benefits the ecosystem — or establishes a new market leader.' }
+                { title: 'The Resolution', desc: 'The committee must pass a joint resolution that benefits the ecosystem, or establishes a new market leader.' }
               ].map((item, i) => (
                 <motion.div key={i} variants={fadeUp} className="wr-exp-card">
                   <h3 className="wr-exp-title">{item.title}</h3>

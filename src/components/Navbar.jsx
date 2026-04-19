@@ -18,17 +18,17 @@ export const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // ── Scroll detection ────────────────────────────────────────────────────────
+  /* Scroll detection */
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // ── Close menu on location change ───────────────────────────────────────────
+  /* Close menu on location change */
   useEffect(() => { setIsOpen(false); }, [location]);
 
-  // ── Handle navigation and scrolling ──────────────────────────────────────────
+  /* Handle navigation and scrolling */
   const handleNavClick = useCallback((id) => {
     if (location.pathname === '/') {
       const el = document.getElementById(id);
@@ -53,7 +53,7 @@ export const Navbar = () => {
           FORGE
         </Link>
 
-        {/* ── Desktop links ── */}
+        {/* Desktop links */}
         <div className="nav-links">
           {NAV_LINKS.map(l => (
             <button key={l.label} 
@@ -72,12 +72,12 @@ export const Navbar = () => {
           </Link>
         </div>
 
-        {/* ── CTA ── */}
+        {/* CTA */}
         <Link to="/contact" className="nav-cta">
           Contact Us
         </Link>
 
-        {/* ── Mobile toggle ── */}
+        {/* Mobile toggle */}
         <button className="mobile-toggle" onClick={() => setIsOpen(p => !p)}
           aria-label="Toggle menu" aria-expanded={isOpen}>
           <AnimatePresence mode="wait" initial={false}>
@@ -93,7 +93,7 @@ export const Navbar = () => {
         </button>
       </div>
 
-      {/* ── Mobile Menu ── */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div

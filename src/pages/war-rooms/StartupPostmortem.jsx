@@ -50,7 +50,7 @@ const StartupPostmortem = () => {
           <motion.div variants={fadeUp} className="wr-info-card">
             <p className="label">The Philosophy</p>
             <h2 className="display-md">Failure is the best teacher.</h2>
-            <p className="body-xl">Success stories are often filled with survivorship bias. We look at the 90% of startups that failed. We don't just ask "what happened?" — we perform a forensic audit of the decisions leading to the collapse.</p>
+            <p className="body-xl">Success stories are often filled with survivorship bias. We look at the 90% of startups that failed. We don't just ask "what happened?" ... we perform a forensic audit of the decisions leading to the collapse.</p>
           </motion.div>
 
           <motion.div variants={fadeUp} className="wr-info-card featured">
@@ -80,7 +80,7 @@ const StartupPostmortem = () => {
               {[
                 { title: 'The Autopsy', desc: 'We take one high-profile failed startup per session. We look at their pitch decks, their burn rates, and their public pivots.' },
                 { title: 'Alternate Paths', desc: 'The room brainstorms: If we were the Co-Founders, at what point could we have saved the ship? What was the "Point of No Return"?' },
-                { title: 'The Red Flag List', desc: 'Each session adds to our club\'s proprietary "Red Flag List" — a guide for our own future builds.' }
+                { title: 'The Red Flag List', desc: 'Each session adds to our club\'s proprietary "Red Flag List", a guide for our own future builds.' }
               ].map((item, i) => (
                 <motion.div key={i} variants={fadeUp} className="wr-exp-card">
                   <h3 className="wr-exp-title">{item.title}</h3>

@@ -50,7 +50,7 @@ const CaseCrackingFridays = () => {
           <motion.div variants={fadeUp} className="wr-info-card">
             <p className="label">The Drill</p>
             <h2 className="display-md">High-intensity peer learning.</h2>
-            <p className="body-xl">Every Friday, we stop the clock. A team presents a recent move in the tech/business world — a merger, a pivot, or a scandal. The room then splits.</p>
+            <p className="body-xl">Every Friday, we stop the clock. A team presents a recent move in the tech/business world, a merger, a pivot, or a scandal. The room then splits.</p>
           </motion.div>
 
           <motion.div variants={fadeUp} className="wr-info-card featured">
