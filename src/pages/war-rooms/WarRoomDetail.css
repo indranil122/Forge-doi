@@ -25,25 +25,23 @@
 .wr-detail-num {
   display: block;
   font-family: var(--font-sans);
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 1.1rem;
+  font-weight: 500; /* Reduced from 700 */
   color: var(--saffron);
   margin-bottom: 1.5rem;
   letter-spacing: 0.1em;
 }
 
 .wr-detail-title {
+  font-family: var(--font-serif);
+  font-weight: 700 !important; /* Overriding display-xl 900 weight */
   margin-bottom: 2rem;
   max-width: 800px;
 }
 
-.wr-detail-title .italic {
-  font-style: italic;
-  font-weight: 400;
-}
-
 .wr-detail-tagline {
   max-width: 600px;
+  font-weight: 400;
 }
 
 .wr-detail-section {
@@ -70,7 +68,10 @@
 }
 
 .wr-info-card .label { margin-bottom: 2rem; }
-.wr-info-card h2 { margin-bottom: 2rem; }
+.wr-info-card h2 { 
+  margin-bottom: 2rem;
+  font-weight: 600; /* Reduced from default bold */
+}
 
 .wr-list-styled {
   list-style: none;
@@ -125,7 +126,7 @@
 .wr-exp-title {
   font-family: var(--font-sans);
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 600; /* Reduced from 700 */
   margin-bottom: 1rem;
   color: var(--saffron);
 }
