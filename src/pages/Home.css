@@ -199,7 +199,7 @@
    WAR ROOMS
 ══════════════════════════════════ */
 .war-rooms-section {
-  background: var(--ink-2);
+  background: var(--bg);
   position: relative;
   overflow: hidden;
 }
@@ -227,19 +227,19 @@
 }
 
 .wr-headline {
-  color: #fff;
+  color: var(--ink);
   font-style: italic;
 }
 
 .wr-desc-col { }
-.wr-desc { color: rgba(255,255,255,0.55); }
+.wr-desc { color: var(--muted); }
 
 .wr-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.06);
+  background: var(--border);
+  border: 1px solid var(--border);
   border-radius: var(--r-lg);
   overflow: hidden;
 }
@@ -251,7 +251,7 @@
   align-items: flex-start;
   gap: 2rem;
   padding: 4.5rem 3.5rem;
-  background: var(--ink-2);
+  background: var(--paper);
   transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
   text-decoration: none;
@@ -272,13 +272,13 @@
 .wr-row-title {
   font-family: var(--font-sans);
   font-size: clamp(1.2rem, 2.5vw, 2rem);
-  color: #fff;
+  color: var(--ink);
   font-weight: 700;
   letter-spacing: -0.02em;
   margin-bottom: 0.5rem;
 }
 .wr-row-desc {
-  color: rgba(255,255,255,0.45);
+  color: var(--muted);
   font-size: 0.95rem;
   line-height: 1.7;
   max-width: 540px;
@@ -289,7 +289,7 @@
   top: 3.5rem;
   right: 3.5rem;
   font-size: 1.25rem;
-  color: rgba(255,255,255,0.15);
+  color: var(--border);
   transition: color 0.3s, transform 0.3s;
 }
 .wr-row:hover .wr-row-arrow {
@@ -590,7 +590,7 @@
    EDGE / WHY JOIN
 ══════════════════════════════════ */
 .edge-section {
-  background: var(--ink);
+  background: var(--bg);
   position: relative;
   overflow: hidden;
 }
@@ -617,14 +617,14 @@
 .edge-top {
   margin-bottom: 6rem;
 }
-.edge-headline { color: #fff; font-style: italic; }
+.edge-headline { color: var(--ink); font-style: italic; }
 
 .edge-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.06);
+  background: var(--border);
+  border: 1px solid var(--border);
   border-radius: var(--r-lg);
   overflow: hidden;
   position: relative;
@@ -633,7 +633,7 @@
 
 .edge-card {
   padding: 3.5rem 3rem;
-  background: var(--ink);
+  background: var(--paper);
   transition: background 0.35s ease;
   cursor: default;
 }
@@ -652,14 +652,14 @@
   font-family: var(--font-sans);
   font-size: 1.2rem;
   font-weight: 700;
-  color: #fff;
+  color: var(--ink);
   margin-bottom: 1rem;
   letter-spacing: -0.02em;
   line-height: 1.3;
 }
 .edge-desc {
   font-size: 0.92rem;
-  color: rgba(255,255,255,0.45);
+  color: var(--muted);
   line-height: 1.75;
 }
 

@@ -176,7 +176,7 @@ export const Home = () => {
         <div className="container">
           <div className="wr-top">
             <Reveal>
-              <p className="label label-light">Flagship Vertical</p>
+              <p className="label">Flagship Vertical</p>
               <h2 className="display-lg wr-headline">War<br/>Rooms.</h2>
             </Reveal>
             <Reveal variants={fadeRight} delay={0.2} className="wr-desc-col">
@@ -223,11 +223,6 @@ export const Home = () => {
                 <p className="body-xl" style={{ marginTop: '2rem' }}>
                   Participants leave with tangible, real output, not just motivation.
                 </p>
-              </Reveal>
-              <Reveal delay={0.2} className="guest-tags">
-                {['Varun Mayya', 'Vaibhav Sisinty', 'Ganesh (Think School)', 'Prateek Singh (Zerodha)', 'Prakhar Gupta'].map(n => (
-                  <span key={n} className="tag">{n}</span>
-                ))}
               </Reveal>
             </div>
             <Reveal variants={fadeRight} className="skill-saturday-card">
@@ -375,7 +370,7 @@ export const Home = () => {
         <div className="container">
           <div className="edge-top">
             <Reveal>
-              <p className="label label-light" style={{ marginBottom: '2rem' }}>The Edge</p>
+              <p className="label" style={{ marginBottom: '2rem' }}>The Edge</p>
               <h2 className="display-lg edge-headline">Why Join<br/>FORGE?</h2>
             </Reveal>
           </div>
