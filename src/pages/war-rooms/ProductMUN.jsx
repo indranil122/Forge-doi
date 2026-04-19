@@ -73,8 +73,8 @@ const ProductMUN = () => {
             viewport={{ once: true }} 
             variants={stagger}
           >
-            <motion.p variants={fadeUp} className="label label-light">The Arena</motion.p>
-            <motion.h2 variants={fadeUp} className="display-lg text-white">Assert dominance.</motion.h2>
+            <motion.p variants={fadeUp} className="label">The Arena</motion.p>
+            <motion.h2 variants={fadeUp} className="display-lg">Assert dominance.</motion.h2>
             
             <div className="wr-experience-grid">
               {[

@@ -73,8 +73,8 @@ const HourMVP = () => {
             viewport={{ once: true }} 
             variants={stagger}
           >
-            <motion.p variants={fadeUp} className="label label-light">The Sprint</motion.p>
-            <motion.h2 variants={fadeUp} className="display-lg text-white">Focus on the core.</motion.h2>
+            <motion.p variants={fadeUp} className="label">The Sprint</motion.p>
+            <motion.h2 variants={fadeUp} className="display-lg">Focus on the core.</motion.h2>
             
             <div className="wr-experience-grid">
               {[

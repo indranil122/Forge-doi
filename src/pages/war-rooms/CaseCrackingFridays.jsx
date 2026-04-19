@@ -73,8 +73,8 @@ const CaseCrackingFridays = () => {
             viewport={{ once: true }} 
             variants={stagger}
           >
-            <motion.p variants={fadeUp} className="label label-light">The Experience</motion.p>
-            <motion.h2 variants={fadeUp} className="display-lg text-white">No Slides allowed.</motion.h2>
+            <motion.p variants={fadeUp} className="label">The Experience</motion.p>
+            <motion.h2 variants={fadeUp} className="display-lg">No Slides allowed.</motion.h2>
             
             <div className="wr-experience-grid">
               {[

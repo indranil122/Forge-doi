@@ -87,8 +87,8 @@ const AboutUs = () => {
             viewport={{ once: true }}
             variants={stagger}
           >
-            <motion.p variants={fadeUp} className="label" style={{ color: 'rgba(255,255,255,0.4)' }}>The Journey</motion.p>
-            <motion.h2 variants={fadeUp} className="display-md" style={{ color: '#fff', marginTop: '1rem' }}>How we scaled.</motion.h2>
+            <motion.p variants={fadeUp} className="label">The Journey</motion.p>
+            <motion.h2 variants={fadeUp} className="display-md" style={{ marginTop: '1rem' }}>How we scaled.</motion.h2>
 
             <div className="timeline-grid">
               <motion.div variants={fadeUp} className="timeline-item">

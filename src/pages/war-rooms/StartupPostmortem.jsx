@@ -73,8 +73,8 @@ const StartupPostmortem = () => {
             viewport={{ once: true }} 
             variants={stagger}
           >
-            <motion.p variants={fadeUp} className="label label-light">The Methodology</motion.p>
-            <motion.h2 variants={fadeUp} className="display-lg text-white">Data-backed autopsy.</motion.h2>
+            <motion.p variants={fadeUp} className="label">The Methodology</motion.p>
+            <motion.h2 variants={fadeUp} className="display-lg">Data-backed autopsy.</motion.h2>
             
             <div className="wr-experience-grid">
               {[
