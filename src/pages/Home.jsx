@@ -100,8 +100,6 @@ export const Home = () => {
   return (
     <main className="home">
 
-          1. HERO
-      */
       <section className="hero" ref={heroRef}>
         <motion.div style={{ y: heroY, opacity: heroOpacity }} className="hero-inner container">
           <motion.div initial="hidden" animate="visible" variants={stagger}>
