@@ -63,11 +63,11 @@ const AboutUs = () => {
             viewport={{ once: true }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="visual-box">
+            <div className="visual-box logo-card">
               <img 
-                src="/forge-logo-new.jpg" 
-                alt="Forge Workspace" 
-                className="visual-image" 
+                src="/about-hero-new.png" 
+                alt="FORGE Logo" 
+                className="visual-logo" 
               />
             </div>
             <div className="visual-caption-bottom">
@@ -76,6 +76,7 @@ const AboutUs = () => {
           </motion.div>
         </div>
       </section>
+
 
       {/* Timeline Section */}
       <section className="origin-timeline">
