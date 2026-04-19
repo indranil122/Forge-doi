@@ -4,6 +4,10 @@ import { Navbar } from './components/Navbar';
 import { Home } from './pages/Home';
 import TeamPage from './pages/TeamPage';
 import ContactPage from './pages/ContactPage';
+import CaseCrackingFridays from './pages/war-rooms/CaseCrackingFridays';
+import StartupPostmortem from './pages/war-rooms/StartupPostmortem';
+import HourMVP from './pages/war-rooms/HourMVP';
+import ProductMUN from './pages/war-rooms/ProductMUN';
 import { Preloader } from './components/Preloader';
 import './App.css';
 
@@ -33,6 +37,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/team" element={<TeamPage />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/war-rooms/case-cracking-fridays" element={<CaseCrackingFridays />} />
+        <Route path="/war-rooms/startup-postmortem" element={<StartupPostmortem />} />
+        <Route path="/war-rooms/1-hour-mvp" element={<HourMVP />} />
+        <Route path="/war-rooms/product-mun" element={<ProductMUN />} />
       </Routes>
 
       <footer className="site-footer">

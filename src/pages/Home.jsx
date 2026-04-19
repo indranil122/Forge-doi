@@ -197,18 +197,20 @@ export const Home = () => {
           <motion.div className="wr-list" initial="hidden" whileInView="visible"
             viewport={{ once: true, margin: '-60px' }} variants={stagger}>
             {[
-              { num: '01', title: 'Case Cracking Fridays', desc: 'Live weekly debate on business news, mergers & geopolitics. Learning is peer-to-peer — not from slides.' },
-              { num: '02', title: 'Startup Postmortem',     desc: 'Forensic deep-dive into real failed startups. Data-backed. Closes with a pattern playbook.' },
-              { num: '03', title: '1 Hour MVP',             desc: 'Choose an industry. Build a product concept in 60 minutes flat. Judged on speed, creativity, viability.' },
-              { num: '04', title: 'Product MUN',            desc: 'MUN structure — but participants represent products & brands, not countries. Debate, negotiate, outmanoeuvre.' },
+              { num: '01', title: 'Case Cracking Fridays', path: '/war-rooms/case-cracking-fridays', desc: 'Live weekly debate on business news, mergers & geopolitics. Learning is peer-to-peer — not from slides.' },
+              { num: '02', title: 'Startup Postmortem',     path: '/war-rooms/startup-postmortem',     desc: 'Forensic deep-dive into real failed startups. Data-backed. Closes with a pattern playbook.' },
+              { num: '03', title: '1 Hour MVP',             path: '/war-rooms/1-hour-mvp',             desc: 'Choose an industry. Build a product concept in 60 minutes flat. Judged on speed, creativity, viability.' },
+              { num: '04', title: 'Product MUN',            path: '/war-rooms/product-mun',            desc: 'MUN structure — but participants represent products & brands, not countries. Debate, negotiate, outmanoeuvre.' },
             ].map(r => (
-              <motion.div key={r.num} variants={fadeUp} className="wr-row">
-                <div className="wr-row-num">{r.num}</div>
-                <div className="wr-row-body">
-                  <h3 className="wr-row-title">{r.title}</h3>
-                  <p className="wr-row-desc">{r.desc}</p>
-                </div>
-                <div className="wr-row-arrow">↗</div>
+              <motion.div key={r.num} variants={fadeUp}>
+                <Link to={r.path} className="wr-row">
+                  <div className="wr-row-num">{r.num}</div>
+                  <div className="wr-row-body">
+                    <h3 className="wr-row-title">{r.title}</h3>
+                    <p className="wr-row-desc">{r.desc}</p>
+                  </div>
+                  <div className="wr-row-arrow">↗</div>
+                </Link>
               </motion.div>
             ))}
           </motion.div>

@@ -253,7 +253,8 @@
   padding: 4.5rem 3.5rem;
   background: var(--ink-2);
   transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: default;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .wr-row:hover { 
