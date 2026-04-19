@@ -289,7 +289,7 @@
   height: 1px;
   background: rgba(0, 0, 0, 0.06);
   margin: 0.4rem 0.5rem;
-  order: 99;                 /* keeps it just above the CTA visually — but CSS order won't work here; handled by margin-top on .mobile-cta */
+  order: 99;                 /* keeps it just above the CTA visually, but CSS order won't work here; handled by margin-top on .mobile-cta */
 }
 
 /* Mobile CTA */
