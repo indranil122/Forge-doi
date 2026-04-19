@@ -1,324 +1,463 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
-
-const fadeUp = {
-  hidden:  { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
-};
-const stagger = { visible: { transition: { staggerChildren: 0.05 } } };
+import React, { useState, useCallback, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { ExternalLink, ArrowLeft, ArrowRight } from 'lucide-react';
+import './TeamPage.css';
 
 const TEAM_MEMBERS = [
   { 
-    name: "MANISH KONDA", 
-    role: "PRESIDENT", 
+    name: "Manish Konda", 
+    role: "President", 
     subtitle: "Head of Club", 
     linkedin: "https://linkedin.com",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&h=200&auto=format&fit=crop",
-    isPresident: true 
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&h=750&auto=format&fit=crop",
+    tags: ["Strategy", "Leadership"],
   },
   { 
-    name: "DWAIPAYAN PAL", 
-    role: "VICE PRESIDENT", 
+    name: "Dwaipayan Pal", 
+    role: "Vice President", 
     linkedin: "https://linkedin.com",
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=200&h=200&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=600&h=750&auto=format&fit=crop",
+    tags: ["Operations", "Product"],
   },
   { 
-    name: "ADITYA SINGH", 
-    role: "VICE PRESIDENT", 
+    name: "Aditya Singh", 
+    role: "Vice President", 
     linkedin: "https://linkedin.com",
-    image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=200&h=200&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=600&h=750&auto=format&fit=crop",
+    tags: ["Growth", "Execution"],
   },
   { 
-    name: "SHEEN RIZVI", 
-    role: "CHIEF OF MARKETING", 
+    name: "Sheen Rizvi", 
+    role: "Chief of Marketing", 
     linkedin: "https://linkedin.com",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&h=200&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=600&h=750&auto=format&fit=crop",
+    tags: ["Marketing", "Brand"],
   },
   { 
-    name: "ANANY MISHRA", 
-    role: "CHIEF OF SPONSORSHIP", 
+    name: "Anany Mishra", 
+    role: "Chief of Sponsorship", 
     linkedin: "https://linkedin.com",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&h=200&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=600&h=750&auto=format&fit=crop",
+    tags: ["Partnerships", "Revenue"],
   },
   { 
-    name: "HIMANI PURI", 
-    role: "CHIEF OF MANAGEMENT", 
+    name: "Himani Puri", 
+    role: "Chief of Management", 
     linkedin: "https://linkedin.com",
-    image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=200&h=200&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=600&h=750&auto=format&fit=crop",
+    tags: ["Management", "Planning"],
   },
   { 
-    name: "PARTH GAUR", 
-    role: "CHIEF OF PERFORMANCE MONITORING", 
+    name: "Parth Gaur", 
+    role: "Chief of Performance Monitoring", 
     linkedin: "https://linkedin.com",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&h=200&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=600&h=750&auto=format&fit=crop",
+    tags: ["Analytics", "KPIs"],
   },
   { 
-    name: "HARMANPREET SINGH", 
-    role: "CHIEF OF INDUSTRY RELATIONS", 
+    name: "Harmanpreet Singh", 
+    role: "Chief of Industry Relations", 
     linkedin: "https://linkedin.com",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=200&h=200&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=600&h=750&auto=format&fit=crop",
+    tags: ["Networking", "Industry"],
   },
   { 
-    name: "DIVYANSH MAURYA", 
-    role: "MANAGER R&D", 
+    name: "Divyansh Maurya", 
+    role: "Manager R&D", 
     linkedin: "https://linkedin.com",
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&h=200&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=600&h=750&auto=format&fit=crop",
+    tags: ["Research", "Innovation"],
   },
 ];
 
-const Card = ({ name, role, subtitle, linkedin, image, isPresident }) => (
-  <motion.div variants={fadeUp} className={`t-card ${isPresident ? 't-president' : ''}`}>
-    <div className="t-avatar">
-      {image ? (
-        <img src={image} alt={name} className="t-img" />
-      ) : (
-        <div className="placeholder-silhouette" />
-      )}
-    </div>
-    <div className="t-card-body">
-      <div className="t-info">
-        <span className="t-name">{name}</span>
-        <span className="t-role">{role}</span>
-        {subtitle && <p className="t-subtitle">{subtitle}</p>}
-      </div>
-      
-      <div className="t-link-row">
-        {linkedin && (
-          <a href={linkedin} target="_blank" rel="noopener noreferrer" className="t-social-link" title="LinkedIn">
-            <ExternalLink size={14} />
-          </a>
-        )}
-        {/* Reservation for backend guy to add more links */}
-        <div className="backend-link-placeholder" title="Reserved for backend links" />
-      </div>
-    </div>
-  </motion.div>
+/* ── Mouse-tracking tilt card ── */
+const TiltCard = ({ children, className }) => {
+  const ref = useRef(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [6, -6]), { stiffness: 200, damping: 20 });
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-6, 6]), { stiffness: 200, damping: 20 });
+
+  const handleMouse = (e) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    mouseX.set((e.clientX - rect.left) / rect.width - 0.5);
+    mouseY.set((e.clientY - rect.top) / rect.height - 0.5);
+  };
+
+  const handleLeave = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMouse}
+      onMouseLeave={handleLeave}
+      style={{ rotateX, rotateY, transformPerspective: 800 }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+/* ── Animated counter digit ── */
+const AnimatedDigit = ({ value }) => (
+  <AnimatePresence mode="wait">
+    <motion.span
+      key={value}
+      initial={{ y: 30, opacity: 0, filter: 'blur(6px)' }}
+      animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
+      exit={{ y: -30, opacity: 0, filter: 'blur(6px)' }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      style={{ display: 'inline-block' }}
+    >
+      {value}
+    </motion.span>
+  </AnimatePresence>
 );
 
-export const TeamPage = () => (
-  <main className="team-page">
-    <div className="container">
-      
-      <div className="team-intro">
-        <div className="tricolour-line" />
-        <p className="label" style={{ marginTop: '1.5rem' }}>The Forge Collective</p>
-      </div>
+/* ── Floating shapes ── */
+const FloatingShape = ({ delay, size, top, left, color }) => (
+  <motion.div
+    className="tp-float-shape"
+    style={{ width: size, height: size, top, left, background: color }}
+    animate={{
+      y: [0, -20, 10, -15, 0],
+      x: [0, 10, -5, 8, 0],
+      rotate: [0, 45, -30, 60, 0],
+      scale: [1, 1.1, 0.95, 1.05, 1],
+    }}
+    transition={{ duration: 12, repeat: Infinity, delay, ease: 'easeInOut' }}
+  />
+);
 
-      <motion.div 
-        className="team-grid" 
-        initial="hidden" 
-        whileInView="visible"
-        viewport={{ once: true }} 
-        variants={stagger}
-      >
-        {TEAM_MEMBERS.map((member, idx) => (
-          <Card key={idx} {...member} />
+const AUTOPLAY_MS = 5000;
+
+export const TeamPage = () => {
+  const [[active, direction], setActive] = useState([0, 0]);
+  const [autoplay, setAutoplay] = useState(true);
+  const [progress, setProgress] = useState(0);
+  const total = TEAM_MEMBERS.length;
+  const touchStart = useRef(null);
+  const progressRef = useRef(null);
+
+  const paginate = useCallback((newDir) => {
+    setActive(([prev]) => {
+      const next = (prev + newDir + total) % total;
+      return [next, newDir];
+    });
+    setProgress(0);
+  }, [total]);
+
+  /* Auto-play with progress bar */
+  useEffect(() => {
+    if (!autoplay) return;
+    const start = Date.now();
+    const tick = () => {
+      const elapsed = Date.now() - start;
+      const pct = Math.min((elapsed / AUTOPLAY_MS) * 100, 100);
+      setProgress(pct);
+      if (pct >= 100) {
+        paginate(1);
+      } else {
+        progressRef.current = requestAnimationFrame(tick);
+      }
+    };
+    progressRef.current = requestAnimationFrame(tick);
+    return () => {
+      if (progressRef.current) cancelAnimationFrame(progressRef.current);
+    };
+  }, [active, autoplay, paginate]);
+
+  /* Pause autoplay on manual nav */
+  const manualNav = (dir) => {
+    setAutoplay(false);
+    paginate(dir);
+    // Resume after a delay
+    setTimeout(() => setAutoplay(true), 10000);
+  };
+
+  /* Keyboard nav */
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === 'ArrowRight') manualNav(1);
+      if (e.key === 'ArrowLeft') manualNav(-1);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+
+  const member = TEAM_MEMBERS[active];
+  const prev = TEAM_MEMBERS[(active - 1 + total) % total];
+  const next = TEAM_MEMBERS[(active + 1) % total];
+
+  /* Touch swipe */
+  const handleTouchStart = (e) => { touchStart.current = e.touches[0].clientX; };
+  const handleTouchEnd = (e) => {
+    if (touchStart.current === null) return;
+    const diff = touchStart.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 60) manualNav(diff > 0 ? 1 : -1);
+    touchStart.current = null;
+  };
+
+  return (
+    <main className="tp" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+
+      {/* ── Floating decorative shapes ── */}
+      <FloatingShape delay={0} size="12px" top="15%" left="8%" color="rgba(255,153,51,0.15)" />
+      <FloatingShape delay={2} size="8px" top="70%" left="5%" color="rgba(19,136,8,0.12)" />
+      <FloatingShape delay={4} size="16px" top="25%" left="92%" color="rgba(255,153,51,0.1)" />
+      <FloatingShape delay={1} size="10px" top="80%" left="88%" color="rgba(19,136,8,0.08)" />
+      <FloatingShape delay={3} size="6px" top="45%" left="50%" color="rgba(255,153,51,0.12)" />
+
+      {/* ── Large background headline ── */}
+      <div className="tp-bg-text" aria-hidden="true">
+        {'MEET'.split('').map((ch, i) => (
+          <motion.span
+            key={`m${i}`}
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.1 + i * 0.08, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {ch}
+          </motion.span>
         ))}
-      </motion.div>
+        <br />
+        <span className="tp-bg-accent">
+          {'OUR'.split('').map((ch, i) => (
+            <motion.span
+              key={`o${i}`}
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4 + i * 0.08, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            >
+              {ch}
+            </motion.span>
+          ))}
+        </span>
+        <br />
+        {'TEAM'.split('').map((ch, i) => (
+          <motion.span
+            key={`t${i}`}
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.65 + i * 0.08, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {ch}
+          </motion.span>
+        ))}
+      </div>
 
-    </div>
+      {/* ── Left side — text info ── */}
+      <div className="tp-left">
+        <motion.p
+          className="tp-label"
+          initial={{ opacity: 0, y: -12, filter: 'blur(4px)' }}
+          animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+          transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
+          The Forge Collective
+        </motion.p>
 
-    <style dangerouslySetInnerHTML={{ __html: `
-      .team-page {
-        background: var(--bg);
-        padding: clamp(8rem, 20vh, 12rem) 0 5rem;
-        min-height: 100vh;
-        position: relative;
-        overflow: hidden;
-      }
-      .team-page::before {
-        content: '';
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0; left: 0;
-        background: radial-gradient(circle at 10% 10%, var(--saffron-low), transparent 40%),
-                    radial-gradient(circle at 90% 90%, var(--green-low), transparent 40%);
-        opacity: 0.6;
-        pointer-events: none;
-        z-index: 0;
-      }
-      .container { position: relative; z-index: 1; }
-      .team-intro {
-        margin-bottom: clamp(3rem, 10vw, 5rem);
-      }
-      .tricolour-line {
-        display: flex;
-        height: 3px;
-        width: 60px;
-        overflow: hidden;
-        border-radius: 4px;
-      }
-      .tricolour-line::before {
-        content: '';
-        display: block;
-        flex: 1;
-        background: var(--saffron);
-      }
-      .tricolour-line::after {
-        content: '';
-        display: block;
-        flex: 1;
-        background: var(--india-green);
-      }
-      
-      .team-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
-        gap: 2.5rem;
-      }
+        {/* ── Name with character animation ── */}
+        <div className="tp-name-wrap">
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.h2
+              key={`name-${active}`}
+              className="tp-name"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0, transition: { duration: 0.2 } }}
+            >
+              {member.name.split('').map((ch, i) => (
+                <motion.span
+                  key={i}
+                  style={{ display: 'inline-block', whiteSpace: ch === ' ' ? 'pre' : 'normal' }}
+                  initial={{ y: 50, opacity: 0, rotateX: 40 }}
+                  animate={{ y: 0, opacity: 1, rotateX: 0 }}
+                  transition={{ delay: i * 0.025, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  {ch === ' ' ? '\u00A0' : ch}
+                </motion.span>
+              ))}
+            </motion.h2>
+          </AnimatePresence>
+        </div>
 
-      .t-card {
-        display: flex;
-        align-items: center;
-        gap: 2.5rem;
-        padding: 2.5rem;
-        background: var(--paper);
-        border: 1px solid var(--border);
-        border-radius: 2rem;
-        transition: all 0.5s cubic-bezier(0.16,1,0.3,1);
-        position: relative;
-        min-height: 180px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-      }
-      .t-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 40px 80px rgba(0,0,0,0.08);
-        border-color: var(--saffron);
-      }
-      .t-card.t-president {
-        border-color: var(--saffron);
-        background: linear-gradient(135deg, rgba(246, 145, 30, 0.1), var(--paper));
-        box-shadow: 0 10px 40px rgba(246, 145, 30, 0.15);
-      }
-      .t-card.t-president .t-avatar {
-        width: 130px;
-        height: 130px;
-        border-color: var(--saffron);
-        box-shadow: 0 8px 30px rgba(246, 145, 30, 0.15);
-      }
-      .t-card.t-president .t-name {
-        font-size: 1.75rem;
-        color: var(--saffron);
-        letter-spacing: -0.03em;
-      }
-      
-      .t-avatar {
-        width: 110px;
-        height: 110px;
-        border-radius: 2rem;
-        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-        flex-shrink: 0;
-        border: 1px solid var(--border);
-        overflow: hidden;
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-      }
-      
-      .t-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
+        {/* ── Role with slide-up ── */}
+        <div className="tp-role-wrap">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`role-${active}`}
+              className="tp-role-group"
+              initial={{ y: 24, opacity: 0, filter: 'blur(4px)' }}
+              animate={{ y: 0, opacity: 1, filter: 'blur(0px)', transition: { delay: 0.2, duration: 0.6, ease: [0.16, 1, 0.3, 1] } }}
+              exit={{ y: -16, opacity: 0, filter: 'blur(4px)', transition: { duration: 0.25 } }}
+            >
+              <span className="tp-role">{member.role}</span>
+              {member.subtitle && <span className="tp-subtitle">{member.subtitle}</span>}
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
-      .placeholder-silhouette {
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle at 50% 40%, var(--muted) 25%, transparent 26%),
-                    radial-gradient(circle at 50% 120%, var(--muted) 45%, transparent 46%);
-        opacity: 0.2;
-      }
+        {/* ── Tags with stagger ── */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`tags-${active}`}
+            className="tp-tags"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            {member.tags?.map((t, i) => (
+              <motion.span
+                key={t}
+                className="tp-tag"
+                initial={{ opacity: 0, scale: 0.8, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ delay: 0.3 + i * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              >
+                {t}
+              </motion.span>
+            ))}
+          </motion.div>
+        </AnimatePresence>
 
-      .t-card-body {
-        display: flex;
-        flex-direction: column;
-        gap: 0.2rem;
-        flex: 1;
-      }
+        {/* ── Description ── */}
+        <motion.p
+          className="tp-description"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.8 }}
+        >
+          Behind every FORGE initiative stands a team that doesn't just
+          plan—they execute, iterate, and deliver.
+        </motion.p>
 
-      .t-header-row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 0.5rem;
-      }
+        {/* ── Navigation + progress ── */}
+        <div className="tp-nav-area">
+          <div className="tp-nav">
+            <motion.button
+              className="tp-arrow"
+              onClick={() => manualNav(-1)}
+              aria-label="Previous"
+              whileHover={{ scale: 1.12 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <ArrowLeft size={18} strokeWidth={2} />
+            </motion.button>
+            <motion.button
+              className="tp-arrow"
+              onClick={() => manualNav(1)}
+              aria-label="Next"
+              whileHover={{ scale: 1.12 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <ArrowRight size={18} strokeWidth={2} />
+            </motion.button>
+          </div>
 
-      .t-name {
-        font-family: var(--font-sans);
-        font-size: 1.4rem;
-        font-weight: 800;
-        color: var(--ink);
-        letter-spacing: -0.025em;
-        line-height: 1.1;
-      }
+          {/* Autoplay progress */}
+          <div className="tp-progress">
+            <div className="tp-progress-track">
+              <motion.div
+                className="tp-progress-fill"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
 
-      .t-role {
-        display: block;
-        font-family: var(--font-body);
-        font-size: 0.75rem;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        color: var(--saffron);
-        text-transform: uppercase;
-        margin-top: 0.25rem;
-      }
-      .t-subtitle {
-        font-size: 0.85rem;
-        color: var(--muted);
-        font-weight: 500;
-        line-height: 1.4;
-        margin-top: 0.2rem;
-      }
+      {/* ── Right side — carousel images ── */}
+      <div className="tp-right">
+        {/* Ghost prev */}
+        <motion.div
+          className="tp-ghost tp-ghost-prev"
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+          onClick={() => manualNav(-1)}
+        >
+          <img src={prev.image} alt="" className="tp-ghost-img" />
+        </motion.div>
 
-      .t-link-row {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        margin-top: 1.25rem;
-        padding-top: 1rem;
-        border-top: 1px solid var(--border);
-      }
+        {/* Main image with tilt */}
+        <TiltCard className="tp-main-frame">
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.div
+              key={`img-${active}`}
+              className="tp-main-img-wrap"
+              custom={direction}
+              initial={(dir) => ({
+                clipPath: dir > 0
+                  ? 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)'
+                  : 'polygon(0 0, 0 0, 0 100%, 0 100%)',
+                scale: 1.15,
+              })}
+              animate={{
+                clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+                scale: 1,
+                transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] },
+              }}
+              exit={(dir) => ({
+                clipPath: dir > 0
+                  ? 'polygon(0 0, 0 0, 0 100%, 0 100%)'
+                  : 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)',
+                scale: 1.05,
+                transition: { duration: 0.6, ease: [0.76, 0, 0.24, 1] },
+              })}
+            >
+              <img src={member.image} alt={member.name} className="tp-main-img" />
+              
+              {/* Overlay gradient */}
+              <div className="tp-img-overlay" />
 
-      .t-social-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 32px;
-        height: 32px;
-        border-radius: 8px;
-        background: var(--faint);
-        color: var(--muted);
-        transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
-      }
-      .t-social-link:hover {
-        background: var(--saffron);
-        color: #fff;
-        transform: translateY(-3px);
-      }
+              {member.linkedin && (
+                <motion.a
+                  href={member.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="tp-linkedin-float"
+                  title="LinkedIn"
+                  initial={{ scale: 0, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.5, type: 'spring', stiffness: 300, damping: 20 }}
+                >
+                  <ExternalLink size={14} />
+                </motion.a>
+              )}
+            </motion.div>
+          </AnimatePresence>
+        </TiltCard>
 
-      .backend-link-placeholder {
-        width: 32px;
-        height: 32px;
-        border: 1px dashed var(--border);
-        border-radius: 8px;
-        opacity: 0.5;
-      }
+        {/* Ghost next */}
+        <motion.div
+          className="tp-ghost tp-ghost-next"
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.6, duration: 0.8 }}
+          onClick={() => manualNav(1)}
+        >
+          <img src={next.image} alt="" className="tp-ghost-img" />
+        </motion.div>
+      </div>
 
-      @media (max-width: 768px) {
-        .team-grid { grid-template-columns: 1fr; gap: 1rem; }
-        .t-card { padding: 1.25rem; }
-        .t-avatar { width: 64px; height: 64px; }
-      }
-      @media (max-width: 480px) {
-        .team-page { padding-top: 8rem; }
-        .t-card { flex-direction: column; align-items: flex-start; gap: 1rem; }
-      }
-    `}} />
-  </main>
-);
+      {/* ── Counter ── */}
+      <div className="tp-counter">
+        <span className="tp-counter-current">
+          <AnimatedDigit value={active + 1} />
+        </span>
+        <span className="tp-counter-sep">/</span>
+        <span className="tp-counter-total">{total}</span>
+      </div>
+
+    </main>
+  );
+};
 
 export default TeamPage;
