@@ -50,7 +50,7 @@ const MissionHeadline = () => {
       style={{ y }}
       className="display-lg mission-headline"
     >
-      { "To prepare students for high-responsibility roles through real world projects and industry exposure developing leadership, execution, and strategic thinking in a startup-style environment.".split(' ').map((word, i) => (
+      { "Forging future leaders through practical learning, smart thinking, and opportunities that open dream careers.".split(' ').map((word, i) => (
         <motion.span
           key={i}
           initial={{ opacity: 0, y: 20 }}
@@ -133,7 +133,7 @@ export const Home = () => {
               </Link>
               <button onClick={() => document.getElementById('mission')?.scrollIntoView({ behavior: 'smooth' })}
                 className="btn-outline">
-                Our Mission
+                our mission
               </button>
             </motion.div>
           </motion.div>
@@ -151,7 +151,7 @@ export const Home = () => {
       <section id="mission" className="section-pad">
         <div className="container">
           <Reveal>
-            <p className="label" style={{ marginBottom: '2rem' }}>Our Mission</p>
+            <p className="label" style={{ marginBottom: '2rem' }}>our mission</p>
           </Reveal>
           <div className="mission-layout">
             <Reveal variants={fadeLeft} className="mission-headline-col">
