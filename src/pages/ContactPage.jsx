@@ -1,102 +1,162 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { FiMail, FiMapPin, FiLinkedin, FiInstagram, FiTwitter, FiArrowRight, FiSend, FiMessageCircle } from 'react-icons/fi';
 import './ContactPage.css';
 
-const fadeUp = {
-  hidden:  { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+  },
 };
 
-const stagger = { visible: { transition: { staggerChildren: 0.1 } } };
+const bouncyVariants = {
+  hidden: { opacity: 0, y: 50, scale: 0.8, rotate: -2 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    rotate: 0,
+    transition: { type: "spring", bounce: 0.5, duration: 0.8, ease: "easeOut" },
+  },
+};
 
 export const ContactPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simulate submission
-    alert("Message sent! We'll get back to you soon.");
+    alert("BOOM! Message dispatched! 🚀");
   };
 
   return (
     <main className="contact-page">
+      {/* Cartoon floating elements */}
+      <div className="cartoon-shapes">
+        <motion.div animate={{ y: [0, -30, 0], rotate: [0, 15, -15, 0] }} transition={{ repeat: Infinity, duration: 8 }} className="c-shape circle" />
+        <motion.div animate={{ y: [0, 40, 0], rotate: [0, -20, 20, 0], scale: [1, 1.1, 1] }} transition={{ repeat: Infinity, duration: 10 }} className="c-shape square" />
+        <motion.div animate={{ x: [0, 30, 0], rotate: [0, 10, -10, 0] }} transition={{ repeat: Infinity, duration: 12 }} className="c-shape pill" />
+        <motion.div animate={{ rotate: 360, scale: [1, 1.2, 1] }} transition={{ repeat: Infinity, duration: 15, ease: "linear" }} className="c-shape star star-1">✦</motion.div>
+        <motion.div animate={{ rotate: -360, scale: [0.8, 1, 0.8] }} transition={{ repeat: Infinity, duration: 12, ease: "linear" }} className="c-shape star star-2">✧</motion.div>
+      </div>
+
       <div className="container">
         <motion.div 
-          className="contact-header"
+          className="contact-layout"
+          variants={containerVariants}
           initial="hidden"
           animate="visible"
-          variants={stagger}
         >
-          <motion.div variants={fadeUp} className="tricolour-line" />
-          <motion.p variants={fadeUp} className="label">Get in Touch</motion.p>
-          <motion.h1 variants={fadeUp} className="display-lg">Let's build<br/>something great.</motion.h1>
-          <motion.p variants={fadeUp} className="body-xl contact-subtitle">
-            Have questions about FORGE or want to collaborate? We're ready to listen and execute.
-          </motion.p>
+          {/* Header Section */}
+          <header className="contact-hero cartoon-card">
+            <motion.div variants={bouncyVariants} className="badge-neo">
+              <FiMessageCircle size={20} />
+              <span>Let's Spark Something!</span>
+            </motion.div>
+            <motion.h1 variants={bouncyVariants} className="display-xl hero-title">
+              Drop Us A <span className="highlight-saffron">Line!</span>
+            </motion.h1>
+            <motion.p variants={bouncyVariants} className="body-xl contact-desc">
+              Whether it's a game-changing idea or a simple inquiry, we're here to forge the path forward together.
+            </motion.p>
+          </header>
+
+          <div className="contact-main-grid">
+            {/* Form Section */}
+            <motion.section variants={bouncyVariants} className="contact-form-section">
+              <div className="cartoon-card form-card">
+                <div className="card-header">
+                  <h2 className="display-md">Send a Message</h2>
+                  <p className="thick-text">WE RESPOND FAST! ⚡</p>
+                </div>
+
+                <form onSubmit={handleSubmit} className="neo-form">
+                  <div className="form-row">
+                    <div className="input-group">
+                      <label htmlFor="name">Who are you?</label>
+                      <input type="text" id="name" required placeholder="John Doe" className="cartoon-input" />
+                    </div>
+                    <div className="input-group">
+                      <label htmlFor="email">Email Address</label>
+                      <input type="email" id="email" required placeholder="hello@world.com" className="cartoon-input" />
+                    </div>
+                  </div>
+
+                  <div className="input-group">
+                    <label htmlFor="subject">What's the vibe?</label>
+                    <input type="text" id="subject" required placeholder="Startup Inquiry 💡" className="cartoon-input"/>
+                  </div>
+
+                  <div className="input-group">
+                    <label htmlFor="message">The Juicy Details</label>
+                    <textarea id="message" required rows="5" placeholder="Let us know what's cooking..." className="cartoon-input"></textarea>
+                  </div>
+
+                  <button type="submit" className="cartoon-btn">
+                    <span>Send It!</span>
+                    <FiSend size={24} />
+                  </button>
+                </form>
+              </div>
+            </motion.section>
+
+            {/* Info Section rotated aside cards */}
+            <aside className="contact-info-section">
+              <motion.div variants={bouncyVariants} whileHover={{ scale: 1.05, rotate: 2 }}>
+                <div className="cartoon-card info-tile">
+                  <div className="info-icon-neo">
+                    <FiMapPin size={32} />
+                  </div>
+                  <div className="info-content">
+                    <h3>THE HQ</h3>
+                    <p>Bennett University, TechZone II, Greater Noida</p>
+                    <a href="https://maps.google.com" target="_blank" rel="noreferrer" className="text-action-neo">
+                      Find Us <FiArrowRight />
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div variants={bouncyVariants} whileHover={{ scale: 1.05, rotate: -2 }}>
+                <div className="cartoon-card info-tile">
+                  <div className="info-icon-neo">
+                    <FiMail size={32} />
+                  </div>
+                  <div className="info-content">
+                    <h3>EMAIL US</h3>
+                    <p>forge@bennett.edu.in</p>
+                    <a href="mailto:forge@bennett.edu.in" className="text-action-neo">
+                      Say Hello <FiArrowRight />
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div variants={bouncyVariants} whileHover={{ scale: 1.05 }}>
+                <div className="cartoon-card tile-social">
+                  <h3 className="social-heading">STALK US ONLINE 👀</h3>
+                  <div className="social-pill-container flex gap-4">
+                    <a href="#" className="neo-social-pill">
+                      <FiLinkedin size={28} />
+                    </a>
+                    <a href="#" className="neo-social-pill">
+                      <FiInstagram size={28} />
+                    </a>
+                    <a href="#" className="neo-social-pill">
+                      <FiTwitter size={28} />
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            </aside>
+          </div>
         </motion.div>
-
-        <div className="contact-grid">
-          <motion.div 
-            className="contact-form-container"
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <form onSubmit={handleSubmit} className="contact-form">
-              <div className="form-group">
-                <label htmlFor="name">Full Name</label>
-                <input type="text" id="name" placeholder="John Doe" required />
-              </div>
-              <div className="form-group">
-                <label htmlFor="email">Email Address</label>
-                <input type="email" id="email" placeholder="john@example.com" required />
-              </div>
-              <div className="form-group">
-                <label htmlFor="subject">Subject</label>
-                <input type="text" id="subject" placeholder="Partnership Inquiry" required />
-              </div>
-              <div className="form-group">
-                <label htmlFor="message">Message</label>
-                <textarea id="message" rows="5" placeholder="Tell us what's on your mind..." required></textarea>
-              </div>
-              <button type="submit" className="btn-dark submit-btn">Send Message →</button>
-            </form>
-          </motion.div>
-
-          <motion.div 
-            className="contact-info-container"
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <div className="info-block">
-              <p className="label info-label">Visit Us</p>
-              <p className="info-text">
-                Bennett University<br />
-                Plot Nos 8-11, TechZone II<br />
-                Greater Noida, UP 201310
-              </p>
-            </div>
-
-            <div className="info-block">
-              <p className="label info-label">Email Us</p>
-              <a href="mailto:forge@bennett.edu.in" className="info-link">forge@bennett.edu.in</a>
-            </div>
-
-            <div className="info-block">
-              <p className="label info-label">Socials</p>
-              <div className="social-links">
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
-              </div>
-            </div>
-
-            <div className="contact-visual">
-              <div className="visual-blob" />
-            </div>
-          </motion.div>
-        </div>
       </div>
     </main>
   );
 };
 
 export default ContactPage;
+
+
+
+
