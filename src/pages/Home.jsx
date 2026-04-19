@@ -113,7 +113,7 @@ export const Home = () => {
               FORGE
             </motion.h1>
             <motion.p variants={fadeUp} className="hero-tagline">
-              Where big journey begins
+              Where Big Journey Begins
             </motion.p>
             <motion.div variants={fadeUp} className="hero-anchors">
               {['WAR ROOMS','WORKSHOPS','INDUSTRY VISITS','CONCLAVE','MANDI'].map((label, i) => (
