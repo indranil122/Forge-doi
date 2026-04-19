@@ -211,29 +211,79 @@ export const Home = () => {
       {/* ════════════════════════════════════════
           4. WORKSHOPS
       ════════════════════════════════════════ */}
-      <section id="workshops" className="section-pad">
+      <section id="workshops" className="section-pad workshop-section">
         <div className="container">
-          <div className="workshop-grid">
-            <div className="workshop-left">
-              <Reveal>
-                <p className="label" style={{ marginBottom: '2rem' }}>Workshops</p>
-                <h2 className="display-md">1–2 day hands-on sessions with leading practitioners.</h2>
-                <p className="body-xl" style={{ marginTop: '2rem' }}>
-                  Participants leave with tangible, real output, not just motivation.
-                </p>
-              </Reveal>
-            </div>
-            <Reveal variants={fadeRight} className="skill-saturday-card">
-              <p className="label" style={{ marginBottom: '2rem' }}>Skill Saturdays</p>
-              <h3 className="display-md" style={{ fontSize: 'clamp(1.75rem,3vw,2.5rem)' }}>
-                Internal upskilling for FORGE core members.
-              </h3>
-              <p className="body-xl" style={{ marginTop: '2rem', fontSize: '1rem' }}>
-                Every Saturday is purposeful. External participants accepted by application only.
+          <div className="workshop-intro">
+            <Reveal>
+              <p className="label">Upskilling</p>
+              <h2 className="display-lg">Workshop<br/>Series.</h2>
+            </Reveal>
+            <Reveal variants={fadeRight} delay={0.2}>
+              <p className="body-xl workshop-tagline">
+                Bridging the gap between theory and industry execution.<br/>
+                No boring lectures. Pure building.
               </p>
-              <span className="tag tag-green" style={{ marginTop: '3rem' }}>By Selection</span>
             </Reveal>
           </div>
+
+          <div className="workshop-main-grid">
+            <Reveal variants={fadeUp} className="workshop-card practitioner-card">
+              <div className="card-content">
+                <h3 className="workshop-card-title">Practitioner Workshops</h3>
+                <p className="workshop-card-desc">
+                  1–2 day intense sprints led by product leaders from top tech companies. 
+                  Build a real prototype, write a PRD, or design a growth loop.
+                </p>
+                <div className="workshop-features">
+                  <span>• Real-world scenarios</span>
+                  <span>• Tangible outcomes</span>
+                  <span>• Career networking</span>
+                </div>
+                <div className="card-footer">
+                  <span className="open-status">Open to All</span>
+                </div>
+              </div>
+              <div className="card-bg-accent"></div>
+            </Reveal>
+
+            <Reveal variants={fadeUp} delay={0.15} className="workshop-card internal-card">
+              <div className="card-content">
+                <h3 className="workshop-card-title">Skill Saturdays</h3>
+                <p className="workshop-card-desc">
+                  Internal upskilling for FORGE core members. Deep dives into specific 
+                  operational skills required to run a high-growth student organization.
+                </p>
+                <div className="workshop-features">
+                  <span>• Every single Saturday</span>
+                  <span>• Peer-led learning</span>
+                  <span>• Operational mastery</span>
+                </div>
+                <div className="card-footer">
+                  <span className="tag tag-green">By Selection Only</span>
+                </div>
+              </div>
+              <div className="card-bg-accent"></div>
+            </Reveal>
+          </div>
+        </div>
+
+        {/* Skill Ticker for Playfulness */}
+        <div className="skill-ticker-wrap">
+          <motion.div 
+            className="skill-ticker"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
+          >
+            {[
+              "Product Management", "Growth Hacking", "UI/UX Design", "No-Code Dev", 
+              "Market Analysis", "PRD Writing", "Strategic Finance", "Public Speaking",
+              "Leadership", "Operations", "Growth Hacking", "Product Management", "UI/UX Design", "No-Code Dev", 
+              "Market Analysis", "PRD Writing", "Strategic Finance", "Public Speaking",
+              "Leadership", "Operations"
+            ].map((skill, i) => (
+              <span key={i} className="skill-item">{skill}</span>
+            ))}
+          </motion.div>
         </div>
       </section>
 
