@@ -62,6 +62,10 @@ export const Navbar = () => {
               {l.label}
             </button>
           ))}
+          <Link to="/about"
+            className={`nav-link${location.pathname === '/about' ? ' active' : ''}`}>
+            ABOUT US
+          </Link>
           <Link to="/team"
             className={`nav-link${location.pathname === '/team' ? ' active' : ''}`}>
             TEAM
@@ -115,6 +119,17 @@ export const Navbar = () => {
               initial={{ opacity: 0, x: -12 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: NAV_LINKS.length * 0.05 }}>
+              <Link to="/about"
+                className={`mobile-link${location.pathname === '/about' ? ' active' : ''}`}
+                onClick={() => setIsOpen(false)}>
+                <span>ABOUT US</span>
+                <span className="mobile-link-arrow">↗</span>
+              </Link>
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, x: -12 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: (NAV_LINKS.length + 1) * 0.05 }}>
               <Link to="/team"
                 className={`mobile-link${location.pathname === '/team' ? ' active' : ''}`}
                 onClick={() => setIsOpen(false)}>
@@ -125,7 +140,7 @@ export const Navbar = () => {
             <motion.span
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: (NAV_LINKS.length + 1) * 0.05 }}>
+              transition={{ delay: (NAV_LINKS.length + 2) * 0.05 }}>
               <Link to="/contact" className="mobile-cta" onClick={() => setIsOpen(false)}>
                 Contact Us →
               </Link>

@@ -8,6 +8,7 @@ import CaseCrackingFridays from './pages/war-rooms/CaseCrackingFridays';
 import StartupPostmortem from './pages/war-rooms/StartupPostmortem';
 import HourMVP from './pages/war-rooms/HourMVP';
 import ProductMUN from './pages/war-rooms/ProductMUN';
+import AboutUs from './pages/AboutUs';
 import { Preloader } from './components/Preloader';
 import './App.css';
 
@@ -35,6 +36,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<AboutUs />} />
         <Route path="/team" element={<TeamPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/war-rooms/case-cracking-fridays" element={<CaseCrackingFridays />} />
@@ -42,6 +44,7 @@ function App() {
         <Route path="/war-rooms/1-hour-mvp" element={<HourMVP />} />
         <Route path="/war-rooms/product-mun" element={<ProductMUN />} />
       </Routes>
+
 
       <footer className="site-footer">
         <div className="container">
@@ -64,6 +67,7 @@ function App() {
             <div>
               <p className="footer-col-heading">Organisation</p>
               <div className="footer-links">
+                <Link to="/about">About Us</Link>
                 <Link to="/team">Team</Link>
                 <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
