@@ -1,117 +1,153 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './Preloader.css';
 
+const WORDS = ['Strategy', 'Execution', 'Leadership', 'Impact'];
+
 export const Preloader = () => {
   const [loading, setLoading] = useState(true);
-  const [percent, setPercent] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const [wordIdx, setWordIdx] = useState(0);
+  const startTime = useRef(Date.now());
+
+  const DURATION = 3200; // total preloader duration in ms
 
   useEffect(() => {
-    // Prevent scrolling while loading
     document.body.style.overflow = 'hidden';
-    
-    // Simulate loading progress
-    const interval = setInterval(() => {
-      setPercent(prev => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          return 100;
-        }
-        return prev + Math.floor(Math.random() * 15) + 5;
-      });
-    }, 150);
 
-    const timer = setTimeout(() => {
+    // Smooth progress animation
+    const tick = () => {
+      const elapsed = Date.now() - startTime.current;
+      const pct = Math.min((elapsed / DURATION) * 100, 100);
+      setProgress(Math.round(pct));
+
+      if (pct < 100) {
+        requestAnimationFrame(tick);
+      }
+    };
+    requestAnimationFrame(tick);
+
+    // Cycle words
+    const wordTimer = setInterval(() => {
+      setWordIdx(prev => (prev + 1) % WORDS.length);
+    }, 700);
+
+    // End
+    const endTimer = setTimeout(() => {
       setLoading(false);
-      document.body.style.overflow = 'auto';
-    }, 2800); 
+      document.body.style.overflow = '';
+    }, DURATION + 400);
 
     return () => {
-      clearInterval(interval);
-      clearTimeout(timer);
-      document.body.style.overflow = 'auto';
+      clearInterval(wordTimer);
+      clearTimeout(endTimer);
+      document.body.style.overflow = '';
     };
   }, []);
-
-  const words = ["STRATEGY", "EXECUTION", "LEADERSHIP"];
 
   return (
     <AnimatePresence>
       {loading && (
-        <motion.div 
-          className="preloader-overlay"
-          initial={{ opacity: 1 }}
-          exit={{ 
-            y: '-100%',
-            transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1], delay: 0.2 } 
+        <motion.div
+          className="pre"
+          exit={{
+            clipPath: 'inset(0 0 100% 0)',
+            transition: { duration: 0.9, ease: [0.76, 0, 0.24, 1], delay: 0.15 },
           }}
         >
-          <div className="preloader-content">
-            {/* Word Cycle */}
-            <div className="word-cycle">
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={Math.floor(percent / 33.4)}
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: -20, opacity: 0 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
-                  className="cycle-word"
-                >
-                  {words[Math.min(Math.floor(percent / 33.4), words.length - 1)]}
-                </motion.span>
-              </AnimatePresence>
-            </div>
-
-            {/* Main Title Reveal */}
-            <div className="main-reveal">
-              <motion.h1 
-                initial={{ letterSpacing: '1.2em', opacity: 0, filter: 'blur(10px)' }}
-                animate={{ 
-                  letterSpacing: '0.4em', 
-                  opacity: 1, 
-                  filter: 'blur(0px)',
-                  transition: { duration: 1.5, ease: [0.16, 1, 0.3, 1] } 
-                }}
-                className="preloader-title"
-              >
-                FORGE
-              </motion.h1>
-              
-              {/* Animated Underline */}
-              <motion.div 
-                className="preloader-line"
-                initial={{ width: 0 }}
-                animate={{ width: '100%', transition: { duration: 1.2, ease: "easeInOut", delay: 0.5 } }}
-              />
-            </div>
-
-            {/* Progress Info */}
-            <div className="progress-container">
-              <motion.div 
-                className="progress-bar"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: percent / 100 }}
-                style={{ originX: 0 }}
-              />
-              <div className="progress-details">
-                <span className="location-tag">BU · PMC</span>
-                <span className="percent-text">{Math.min(percent, 100)}%</span>
-              </div>
-            </div>
+          {/* ── Background layers ── */}
+          <div className="pre-bg">
+            <div className="pre-noise" />
+            <motion.div
+              className="pre-orb pre-orb-1"
+              animate={{ x: [0, 60, -30, 0], y: [0, -40, 30, 0], scale: [1, 1.15, 0.95, 1] }}
+              transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+            />
+            <motion.div
+              className="pre-orb pre-orb-2"
+              animate={{ x: [0, -50, 40, 0], y: [0, 30, -50, 0], scale: [1, 0.9, 1.1, 1] }}
+              transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+            />
           </div>
 
-          {/* Decorative Elements */}
-          <div className="preloader-bg-decor">
-            <div className="decor-grid" />
-            <motion.div 
-              className="decor-gradient"
-              animate={{ 
-                opacity: [0.3, 0.5, 0.3],
-                scale: [1, 1.1, 1]
-              }}
-              transition={{ duration: 4, repeat: Infinity }}
-            />
+          {/* ── Main content ── */}
+          <div className="pre-content">
+
+            {/* Top bar - institution tag */}
+            <motion.div
+              className="pre-top"
+              initial={{ opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <span className="pre-institution">Bennett University</span>
+              <span className="pre-divider" />
+              <span className="pre-institution">Product Management Club</span>
+            </motion.div>
+
+            {/* Center — FORGE wordmark */}
+            <div className="pre-center">
+              <div className="pre-title-container">
+                {'FORGE'.split('').map((char, i) => (
+                  <motion.span
+                    key={i}
+                    className="pre-char"
+                    initial={{ y: 80, opacity: 0, rotateX: 40 }}
+                    animate={{ y: 0, opacity: 1, rotateX: 0 }}
+                    transition={{
+                      delay: 0.15 + i * 0.08,
+                      duration: 1,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                  >
+                    {char}
+                  </motion.span>
+                ))}
+              </div>
+
+              {/* Animated underline */}
+              <motion.div
+                className="pre-underline"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ delay: 0.7, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              />
+
+              {/* Word cycle */}
+              <div className="pre-word-wrap">
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={wordIdx}
+                    className="pre-word"
+                    initial={{ y: 14, opacity: 0, filter: 'blur(4px)' }}
+                    animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
+                    exit={{ y: -14, opacity: 0, filter: 'blur(4px)' }}
+                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    {WORDS[wordIdx]}
+                  </motion.span>
+                </AnimatePresence>
+              </div>
+            </div>
+
+            {/* Bottom bar — progress */}
+            <motion.div
+              className="pre-bottom"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+            >
+              <div className="pre-progress-track">
+                <motion.div
+                  className="pre-progress-fill"
+                  style={{ width: `${progress}%` }}
+                />
+              </div>
+              <div className="pre-meta">
+                <span className="pre-meta-left">Loading experience</span>
+                <span className="pre-meta-right">{progress}%</span>
+              </div>
+            </motion.div>
           </div>
         </motion.div>
       )}

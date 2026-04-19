@@ -1,132 +1,244 @@
-/* src/components/Preloader.css */
-.preloader-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
-    background: #0D0D0D;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    color: #FFFFFF;
+/* ════════════════════════════════════════
+   PRELOADER — Corporate & Cinematic
+════════════════════════════════════════ */
+
+/* ── Overlay ── */
+.pre {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #0a0a0a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
-.preloader-content {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 400px;
-    padding: 2rem;
+/* ── Background ── */
+.pre-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 
-/* Word Cycle Rendering */
-.word-cycle {
-    height: 24px;
-    margin-bottom: 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.pre-noise {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+  opacity: 0.6;
 }
 
-.cycle-word {
-    font-family: var(--font-sans);
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.3em;
-    color: var(--saffron);
-    text-transform: uppercase;
+.pre-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
 }
 
-/* Main Title */
-.main-reveal {
-    position: relative;
-    margin-bottom: 3rem;
-    text-align: center;
+.pre-orb-1 {
+  top: 15%;
+  right: 20%;
+  width: 45vw;
+  height: 45vw;
+  max-width: 500px;
+  max-height: 500px;
+  background: radial-gradient(circle, rgba(255, 153, 51, 0.12) 0%, transparent 70%);
 }
 
-.preloader-title {
-    font-family: var(--font-serif);
-    font-size: clamp(2.5rem, 8vw, 4.5rem);
-    font-weight: 900;
-    margin: 0;
-    line-height: 1;
-    color: #FFFFFF;
-    text-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+.pre-orb-2 {
+  bottom: 10%;
+  left: 15%;
+  width: 50vw;
+  height: 50vw;
+  max-width: 550px;
+  max-height: 550px;
+  background: radial-gradient(circle, rgba(19, 136, 8, 0.08) 0%, transparent 70%);
 }
 
-.preloader-line {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
-    margin-top: 1rem;
+/* ── Main content layout ── */
+.pre-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  padding: clamp(2rem, 6vh, 4rem) clamp(1.5rem, 4vw, 3rem);
 }
 
-/* Progress Section */
-.progress-container {
-    width: 100%;
-    margin-top: 1rem;
+/* ── Top bar — institution ── */
+.pre-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
-.progress-bar {
-    height: 2px;
-    background: var(--saffron);
-    width: 100%;
-    box-shadow: 0 0 15px var(--saffron);
-    margin-bottom: 0.75rem;
+.pre-institution {
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
 }
 
-.progress-details {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    font-family: var(--font-sans);
-    font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    color: rgba(255, 255, 255, 0.4);
-    text-transform: uppercase;
+.pre-divider {
+  width: 20px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
 }
 
-.percent-text {
-    color: #FFFFFF;
+/* ── Center — FORGE wordmark ── */
+.pre-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
 }
 
-/* Background Decorations */
-.preloader-bg-decor {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
+.pre-title-container {
+  display: flex;
+  align-items: baseline;
+  perspective: 800px;
+  overflow: hidden;
+  padding-bottom: 0.15em;
 }
 
-.decor-grid {
-    position: absolute;
-    inset: 0;
-    background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
-    mask-image: radial-gradient(circle at center, black, transparent 80%);
+.pre-char {
+  display: inline-block;
+  font-family: var(--font-logo);
+  font-size: clamp(4rem, 14vw, 10rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  color: #ffffff;
+  will-change: transform, opacity;
 }
 
-.decor-gradient {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60vw;
-    height: 60vw;
-    background: radial-gradient(circle, rgba(255, 153, 51, 0.08) 0%, transparent 70%);
-    filter: blur(60px);
+.pre-underline {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 153, 51, 0.6) 20%,
+    rgba(255, 153, 51, 1) 50%,
+    rgba(255, 153, 51, 0.6) 80%,
+    transparent
+  );
+  transform-origin: left center;
+  margin-top: 0.5rem;
+  box-shadow: 0 0 20px rgba(255, 153, 51, 0.3);
 }
 
-/* Responsive adjustments */
+/* Word cycle */
+.pre-word-wrap {
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.25rem;
+  overflow: hidden;
+}
+
+.pre-word {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+/* ── Bottom bar — progress ── */
+.pre-bottom {
+  width: 100%;
+  max-width: 320px;
+}
+
+.pre-progress-track {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.pre-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--saffron), #ffb84d);
+  border-radius: 2px;
+  transition: width 0.15s linear;
+  box-shadow: 0 0 12px rgba(255, 153, 51, 0.4);
+  position: relative;
+}
+
+.pre-progress-fill::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -2px;
+  width: 4px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--saffron);
+  box-shadow: 0 0 8px var(--saffron);
+}
+
+.pre-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.75rem;
+}
+
+.pre-meta-left,
+.pre-meta-right {
+  font-family: var(--font-sans);
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.pre-meta-left {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.pre-meta-right {
+  color: rgba(255, 255, 255, 0.6);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Responsive ── */
 @media (max-width: 768px) {
-    .preloader-title {
-        font-size: 3rem;
-    }
-    .preloader-content {
-        max-width: 300px;
-    }
+  .pre-char {
+    font-size: clamp(3rem, 16vw, 6rem);
+  }
+
+  .pre-top {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .pre-divider {
+    display: none;
+  }
+
+  .pre-bottom {
+    max-width: 260px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pre-content {
+    padding: 3rem 1.5rem;
+  }
+
+  .pre-word {
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+  }
 }
