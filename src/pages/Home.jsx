@@ -5,15 +5,15 @@ import './Home.css';
 
 /* Animation Variants */
 const fadeUp = {
-  hidden:  { opacity: 0, y: 48 },
+  hidden: { opacity: 0, y: 48 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } },
 };
 const fadeLeft = {
-  hidden:  { opacity: 0, x: -48 },
+  hidden: { opacity: 0, x: -48 },
   visible: { opacity: 1, x: 0, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } },
 };
 const fadeRight = {
-  hidden:  { opacity: 0, x: 48 },
+  hidden: { opacity: 0, x: 48 },
   visible: { opacity: 1, x: 0, transition: { duration: 0.9, ease: [0.16, 1, 0.3, 1] } },
 };
 const stagger = { visible: { transition: { staggerChildren: 0.12 } } };
@@ -45,12 +45,12 @@ const MissionHeadline = () => {
   const y = useTransform(scrollYProgress, [0, 1], [40, -40]);
 
   return (
-    <motion.h2 
+    <motion.h2
       ref={ref}
       style={{ y }}
       className="display-lg mission-headline"
     >
-      { "Forging future leaders through practical learning, smart thinking, and opportunities that open dream careers.".split(' ').map((word, i) => (
+      {"Forging future leaders through practical learning, smart thinking, and opportunities that open dream careers.".split(' ').map((word, i) => (
         <motion.span
           key={i}
           initial={{ opacity: 0, y: 20 }}
@@ -76,7 +76,7 @@ export const Home = () => {
   /* Smooth-scroll on mount if hash or state target is present */
   React.useEffect(() => {
     const targetId = window.location.hash ? window.location.hash.slice(1) : location.state?.scrollTo;
-    
+
     if (targetId) {
       const el = document.getElementById(targetId);
       if (el) {
@@ -87,7 +87,7 @@ export const Home = () => {
           const elementRect = el.getBoundingClientRect().top;
           const offsetPos = elementRect - bodyRect - offset;
           window.scrollTo({ top: offsetPos, behavior: 'smooth' });
-          
+
           // Clear state after scrolling to prevent re-triggering
           if (location.state?.scrollTo) {
             window.history.replaceState({}, document.title);
@@ -113,8 +113,8 @@ export const Home = () => {
               Where Big Journey Begins
             </motion.p>
             <motion.div variants={fadeUp} className="hero-anchors">
-              {['WAR ROOMS','WORKSHOPS','INDUSTRY VISITS','CONCLAVE','MANDI'].map((label, i) => (
-                <button key={i} 
+              {['WAR ROOMS', 'WORKSHOPS', 'INDUSTRY VISITS', 'CONCLAVE', 'MANDI'].map((label, i) => (
+                <button key={i}
                   onClick={() => {
                     document.getElementById(label.toLowerCase().replace(/\s+/g, '-'))
                       ?.scrollIntoView({ behavior: 'smooth' });
@@ -151,7 +151,7 @@ export const Home = () => {
             <motion.div ref={useRef(null)} className="mission-pillars">
               {[
                 { icon: '⚡', title: 'Real-Time Projects', desc: 'Hands-on experience with live builds, not simulations.' },
-                { icon: '♟', title: 'Strategic Thinking',  desc: 'Developing the analytical mindset for product leadership.' },
+                { icon: '♟', title: 'Strategic Thinking', desc: 'Developing the analytical mindset for product leadership.' },
                 { icon: '🎯', title: 'Leadership Exposure', desc: 'Direct interaction with founders and top-tier operators.' },
               ].map((p, i) => (
                 <Reveal key={i} delay={i * 0.15} className="pillar-card">
@@ -175,7 +175,7 @@ export const Home = () => {
           <div className="wr-top">
             <Reveal>
               <p className="label">Flagship Vertical</p>
-              <h2 className="display-lg wr-headline">War<br/>Rooms.</h2>
+              <h2 className="display-lg wr-headline">War<br />Rooms.</h2>
             </Reveal>
             <Reveal variants={fadeRight} delay={0.2} className="wr-desc-col">
               <p className="body-xl wr-desc">
@@ -189,9 +189,9 @@ export const Home = () => {
             viewport={{ once: true, margin: '-60px' }} variants={stagger}>
             {[
               { num: '01', title: 'Case Cracking Fridays', path: '/war-rooms/case-cracking-fridays', desc: 'Live weekly debate on business news, mergers & geopolitics. Learning is peer-to-peer, not from slides.' },
-              { num: '02', title: 'Startup Postmortem',     path: '/war-rooms/startup-postmortem',     desc: 'Forensic deep-dive into real failed startups. Data-backed. Closes with a pattern playbook.' },
-              { num: '03', title: '1 Hour MVP',             path: '/war-rooms/1-hour-mvp',             desc: 'Choose an industry. Build a product concept in 60 minutes flat. Judged on speed, creativity, viability.' },
-              { num: '04', title: 'Product MUN',            path: '/war-rooms/product-mun',            desc: 'MUN structure, but participants represent products & brands, not countries. Debate, negotiate, outmanoeuvre.' },
+              { num: '02', title: 'Startup Postmortem', path: '/war-rooms/startup-postmortem', desc: 'Forensic deep-dive into real failed startups. Data-backed. Closes with a pattern playbook.' },
+              { num: '03', title: '1 Hour MVP', path: '/war-rooms/1-hour-mvp', desc: 'Choose an industry. Build a product concept in 60 minutes flat. Judged on speed, creativity, viability.' },
+              { num: '04', title: 'Product MUN', path: '/war-rooms/product-mun', desc: 'MUN structure, but participants represent products & brands, not countries. Debate, negotiate, outmanoeuvre.' },
             ].map(r => (
               <motion.div key={r.num} variants={fadeUp}>
                 <Link to={r.path} className="wr-row">
@@ -216,11 +216,11 @@ export const Home = () => {
           <div className="workshop-intro">
             <Reveal>
               <p className="label">Upskilling</p>
-              <h2 className="display-lg">Workshop<br/>Series.</h2>
+              <h2 className="display-lg">Workshop<br />Series.</h2>
             </Reveal>
             <Reveal variants={fadeRight} delay={0.2}>
               <p className="body-xl workshop-tagline">
-                Bridging the gap between theory and industry execution.<br/>
+                Bridging the gap between theory and industry execution.<br />
                 No boring lectures. Pure building.
               </p>
             </Reveal>
@@ -231,7 +231,7 @@ export const Home = () => {
               <div className="card-content">
                 <h3 className="workshop-card-title">Practitioner Workshops</h3>
                 <p className="workshop-card-desc">
-                  1–2 day intense sprints led by product leaders from top tech companies. 
+                  1–2 day intense sprints led by product leaders from top tech companies.
                   Build a real prototype, write a PRD, or design a growth loop.
                 </p>
                 <div className="workshop-features">
@@ -250,7 +250,7 @@ export const Home = () => {
               <div className="card-content">
                 <h3 className="workshop-card-title">Skill Saturdays</h3>
                 <p className="workshop-card-desc">
-                  Internal upskilling for FORGE core members. Deep dives into specific 
+                  Internal upskilling for FORGE core members. Deep dives into specific
                   operational skills required to run a high-growth student organization.
                 </p>
                 <div className="workshop-features">
@@ -271,15 +271,22 @@ export const Home = () => {
         <div className="skill-ticker-wrap">
           <motion.div 
             className="skill-ticker"
+            style={{ width: 'max-content' }}
             animate={{ x: ["0%", "-50%"] }}
-            transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
+            transition={{ repeat: Infinity, duration: 75, ease: "linear" }}
           >
             {[
               "Product Management", "Growth Hacking", "UI/UX Design", "No-Code Dev", 
               "Market Analysis", "PRD Writing", "Strategic Finance", "Public Speaking",
-              "Leadership", "Operations", "Growth Hacking", "Product Management", "UI/UX Design", "No-Code Dev", 
+              "Leadership", "Operations", "Market Research", "Agile Workflow",
+              "Data Analytics", "Customer Discovery", "Brand Strategy", "Venture Capital",
+              "Pitching", "Stakeholder Management", "UX Research", "GTM Strategy",
+              // Repeat exactly
+              "Product Management", "Growth Hacking", "UI/UX Design", "No-Code Dev", 
               "Market Analysis", "PRD Writing", "Strategic Finance", "Public Speaking",
-              "Leadership", "Operations"
+              "Leadership", "Operations", "Market Research", "Agile Workflow",
+              "Data Analytics", "Customer Discovery", "Brand Strategy", "Venture Capital",
+              "Pitching", "Stakeholder Management", "UX Research", "GTM Strategy"
             ].map((skill, i) => (
               <span key={i} className="skill-item">{skill}</span>
             ))}
@@ -305,7 +312,7 @@ export const Home = () => {
         <div className="container">
           <Reveal>
             <p className="label" style={{ marginBottom: '2rem' }}>The Process</p>
-            <h2 className="display-lg">Industry<br/>Visits.</h2>
+            <h2 className="display-lg">Industry<br />Visits.</h2>
             <p className="body-xl" style={{ marginTop: '1.5rem', maxWidth: '520px' }}>
               Real offices. Real problems. Real competition.
             </p>
@@ -314,10 +321,10 @@ export const Home = () => {
           <motion.div className="visit-timeline" initial="hidden" whileInView="visible"
             viewport={{ once: true, margin: '-60px' }} variants={stagger}>
             {[
-              { num: '01', title: 'Startup Office Visit',    desc: 'Physically taken to a real startup office, not a virtual tour, not a webinar.' },
-              { num: '02', title: 'Team Formation',          desc: 'Observe operations, workflow, culture and problems on the ground.' },
-              { num: '03', title: 'Post-Visit PPT Report',   desc: 'Each team compiles findings and proposed solutions into a structured deck.' },
-              { num: '04', title: 'Judging & Prize',         desc: 'FORGE judges evaluate decks on insight depth and solution quality.' },
+              { num: '01', title: 'Startup Office Visit', desc: 'Physically taken to a real startup office, not a virtual tour, not a webinar.' },
+              { num: '02', title: 'Team Formation', desc: 'Observe operations, workflow, culture and problems on the ground.' },
+              { num: '03', title: 'Post-Visit PPT Report', desc: 'Each team compiles findings and proposed solutions into a structured deck.' },
+              { num: '04', title: 'Judging & Prize', desc: 'FORGE judges evaluate decks on insight depth and solution quality.' },
             ].map(s => (
               <motion.div key={s.num} variants={fadeUp} className="visit-step">
                 <div className="visit-step-num">{s.num}</div>
@@ -338,7 +345,7 @@ export const Home = () => {
           <div className="conclave-inner">
             <Reveal className="conclave-text">
               <p className="label" style={{ marginBottom: '2rem' }}>Candid Conversations</p>
-              <h2 className="display-lg">Industry<br/>Conclave.</h2>
+              <h2 className="display-lg">Industry<br />Conclave.</h2>
               <p className="body-xl" style={{ marginTop: '2rem' }}>
                 Not a lecture. A candid conversation with those who've built.
               </p>
@@ -397,9 +404,9 @@ export const Home = () => {
           <motion.div className="mandi-grid" initial="hidden" whileInView="visible"
             viewport={{ once: true, margin: '-60px' }} variants={staggerFast}>
             {[
-              { num: '01', title: 'Hit the Market',       desc: 'Students go to a real local market — uncontrolled, unscripted, completely live.' },
-              { num: '02', title: 'Sell & Trade Up',      desc: 'Starting with a small artifact, participants sell, barter, and hustle to maximise earnings.' },
-              { num: '03', title: 'Professor on Ground',  desc: 'Faculty accompany the group and offer mid-event guidance.' },
+              { num: '01', title: 'Hit the Market', desc: 'Students go to a real local market — uncontrolled, unscripted, completely live.' },
+              { num: '02', title: 'Sell & Trade Up', desc: 'Starting with a small artifact, participants sell, barter, and hustle to maximise earnings.' },
+              { num: '03', title: 'Professor on Ground', desc: 'Faculty accompany the group and offer mid-event guidance.' },
             ].map(d => (
               <motion.div key={d.num} variants={fadeUp} className="mandi-card">
                 <div className="mandi-num">{d.num}</div>
@@ -419,19 +426,19 @@ export const Home = () => {
           <div className="edge-top">
             <Reveal>
               <p className="label" style={{ marginBottom: '2rem' }}>The Edge</p>
-              <h2 className="display-lg edge-headline">Why Join<br/>FORGE?</h2>
+              <h2 className="display-lg edge-headline">Why Join<br />FORGE?</h2>
             </Reveal>
           </div>
 
           <motion.div className="edge-grid" initial="hidden" whileInView="visible"
             viewport={{ once: true, margin: '-60px' }} variants={stagger}>
             {[
-              { n: '01', title: 'Prepare for High-Leverage Roles',  desc: "Founder's Office, Chief of Staff, PM & GM roles most students never hear about on campus." },
-              { n: '02', title: 'Build Before You Graduate',        desc: 'Work on real projects, run real events, and build a portfolio that speaks louder than a GPA.' },
-              { n: '03', title: 'Network That Matters',             desc: 'Gain access to founders, operators, and alumni who actually hire — not just lecture.' },
-              { n: '04', title: 'Lead from Day One',                desc: "FORGE is selective. If you're in, you own something. No spectators." },
-              { n: '05', title: 'Think Like an Operator',           desc: 'Develop the cross-functional, execution-first mindset that the top 1% of management grads have.' },
-              { n: '06', title: 'Compete & Win',                    desc: 'Represent Bennett at top national case competitions and hackathons.' },
+              { n: '01', title: 'Prepare for High-Leverage Roles', desc: "Founder's Office, Chief of Staff, PM & GM roles most students never hear about on campus." },
+              { n: '02', title: 'Build Before You Graduate', desc: 'Work on real projects, run real events, and build a portfolio that speaks louder than a GPA.' },
+              { n: '03', title: 'Network That Matters', desc: 'Gain access to founders, operators, and alumni who actually hire — not just lecture.' },
+              { n: '04', title: 'Lead from Day One', desc: "FORGE is selective. If you're in, you own something. No spectators." },
+              { n: '05', title: 'Think Like an Operator', desc: 'Develop the cross-functional, execution-first mindset that the top 1% of management grads have.' },
+              { n: '06', title: 'Compete & Win', desc: 'Represent Bennett at top national case competitions and hackathons.' },
             ].map(e => (
               <motion.div key={e.n} variants={fadeUp} className="edge-card">
                 <span className="edge-num">{e.n}</span>
