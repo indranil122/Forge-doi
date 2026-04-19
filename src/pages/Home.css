@@ -128,6 +128,10 @@
   flex-wrap: wrap;
 }
 
+.mission-cta {
+  font-family: 'Helvetica', 'Arial', sans-serif !important;
+}
+
 
 /* ══════════════════════════════════
    MISSION
@@ -142,6 +146,7 @@
 
 .mission-headline {
   color: var(--ink);
+  font-family: 'Helvetica', 'Arial', sans-serif;
   font-size: clamp(1.5rem, 3.5vw, 2.75rem);
   font-weight: 600; 
   line-height: 1.25;
@@ -152,6 +157,10 @@
 .mission-headline span {
   /* This ensures the dynamic spans don't break the layout too much */
   white-space: pre-wrap;
+}
+
+#mission .label {
+  font-family: 'Helvetica', 'Arial', sans-serif;
 }
 
 .mission-pillars {
@@ -183,8 +192,8 @@
 }
 
 .pillar-icon { font-size: 1.75rem; display: block; margin-bottom: 1rem; }
-.pillar-title { font-family: var(--font-sans); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
-.pillar-desc  { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
+.pillar-title { font-family: 'Helvetica', 'Arial', sans-serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+.pillar-desc  { font-family: 'Helvetica', 'Arial', sans-serif; color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
 
 /* ══════════════════════════════════
    WAR ROOMS

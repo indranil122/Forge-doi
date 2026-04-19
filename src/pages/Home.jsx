@@ -113,7 +113,7 @@ export const Home = () => {
               FORGE
             </motion.h1>
             <motion.p variants={fadeUp} className="hero-tagline">
-              Forge. Build. Execute.
+              Where big journey begins
             </motion.p>
             <motion.div variants={fadeUp} className="hero-anchors">
               {['WAR ROOMS','WORKSHOPS','INDUSTRY VISITS','CONCLAVE','MANDI'].map((label, i) => (
@@ -132,7 +132,7 @@ export const Home = () => {
                 Contact Us →
               </Link>
               <button onClick={() => document.getElementById('mission')?.scrollIntoView({ behavior: 'smooth' })}
-                className="btn-outline">
+                className="btn-outline mission-cta">
                 our mission
               </button>
             </motion.div>
