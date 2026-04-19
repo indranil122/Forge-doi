@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import './AboutUs.css';
-import aboutHero from '../assets/about-hero.png';
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -66,13 +65,13 @@ const AboutUs = () => {
           >
             <div className="visual-box">
               <img 
-                src={aboutHero} 
+                src="/forge-logo-new.jpg" 
                 alt="Forge Workspace" 
                 className="visual-image" 
               />
-              <div className="visual-caption">
-                <p>The FORGE Vision: A dedicated ecosystem for building the next generation of products.</p>
-              </div>
+            </div>
+            <div className="visual-caption-bottom">
+              <p>The FORGE Vision: A dedicated ecosystem for building the next generation of products.</p>
             </div>
           </motion.div>
         </div>
