@@ -273,22 +273,10 @@ export const Home = () => {
             className="skill-ticker"
             style={{ width: 'max-content' }}
             animate={{ x: ["0%", "-50%"] }}
-            transition={{ repeat: Infinity, duration: 75, ease: "linear" }}
+            transition={{ repeat: Infinity, duration: 200, ease: "linear" }}
           >
-            {[
-              "Product Management", "Growth Hacking", "UI/UX Design", "No-Code Dev", 
-              "Market Analysis", "PRD Writing", "Strategic Finance", "Public Speaking",
-              "Leadership", "Operations", "Market Research", "Agile Workflow",
-              "Data Analytics", "Customer Discovery", "Brand Strategy", "Venture Capital",
-              "Pitching", "Stakeholder Management", "UX Research", "GTM Strategy",
-              // Repeat exactly
-              "Product Management", "Growth Hacking", "UI/UX Design", "No-Code Dev", 
-              "Market Analysis", "PRD Writing", "Strategic Finance", "Public Speaking",
-              "Leadership", "Operations", "Market Research", "Agile Workflow",
-              "Data Analytics", "Customer Discovery", "Brand Strategy", "Venture Capital",
-              "Pitching", "Stakeholder Management", "UX Research", "GTM Strategy"
-            ].map((skill, i) => (
-              <span key={i} className="skill-item">{skill}</span>
+            {[...Array(6)].map((_, i) => (
+              <span key={i} className="skill-item">FORGE Product Management Club</span>
             ))}
           </motion.div>
         </div>
