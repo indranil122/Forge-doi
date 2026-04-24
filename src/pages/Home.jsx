@@ -273,10 +273,16 @@ export const Home = () => {
             className="skill-ticker"
             style={{ width: 'max-content' }}
             animate={{ x: ["0%", "-50%"] }}
-            transition={{ repeat: Infinity, duration: 200, ease: "linear" }}
+            transition={{ repeat: Infinity, duration: 150, ease: "linear" }}
           >
-            {[...Array(6)].map((_, i) => (
-              <span key={i} className="skill-item">FORGE Product Management Club</span>
+            {[
+              "FORGE Product Management Club", "FORGE Product Management Club", "FORGE Product Management Club", "FORGE Product Management Club",
+              "FORGE Product Management Club", "FORGE Product Management Club", "FORGE Product Management Club", "FORGE Product Management Club",
+              // Repeat exactly
+              "FORGE Product Management Club", "FORGE Product Management Club", "FORGE Product Management Club", "FORGE Product Management Club",
+              "FORGE Product Management Club", "FORGE Product Management Club", "FORGE Product Management Club", "FORGE Product Management Club"
+            ].map((skill, i) => (
+              <span key={i} className="skill-item">{skill}</span>
             ))}
           </motion.div>
         </div>
