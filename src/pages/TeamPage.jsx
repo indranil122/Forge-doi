@@ -37,7 +37,7 @@ const TEAM_MEMBERS = [
     name: "Anany Mishra", 
     role: "Chief of Sponsorship", 
     linkedin: "https://linkedin.com",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=600&h=750&auto=format&fit=crop",
+    image: "https://res.cloudinary.com/dzxejgtiw/image/upload/v1777046721/IMG_1153.JPG_cnzivt.jpg",
     tags: ["Partnerships", "Revenue"],
   },
   { 
@@ -58,7 +58,7 @@ const TEAM_MEMBERS = [
     name: "Harmanpreet Singh", 
     role: "Chief of Industry Relations", 
     linkedin: "https://linkedin.com",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=600&h=750&auto=format&fit=crop",
+    image: "https://res.cloudinary.com/dzxejgtiw/image/upload/v1777046723/IMG_20260419_230130_id4osp.png",
     tags: ["Networking", "Industry"],
   },
   { 
@@ -68,6 +68,7 @@ const TEAM_MEMBERS = [
     image: "https://res.cloudinary.com/dzxejgtiw/image/upload/f_auto,q_auto/v1776617818/Div_lhufgy.webp",
     tags: ["Research", "Innovation"],
   },
+
 ];
 
 /* ── Mouse-tracking tilt card ── */
