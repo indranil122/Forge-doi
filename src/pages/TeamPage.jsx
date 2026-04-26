@@ -4,66 +4,66 @@ import { ExternalLink, ArrowLeft, ArrowRight } from 'lucide-react';
 import './TeamPage.css';
 
 const TEAM_MEMBERS = [
-  { 
-    name: "Manish Konda", 
-    role: "President", 
-    subtitle: "Head of Club", 
+  {
+    name: "Manish Konda",
+    role: "President",
+    subtitle: "Head of Club",
     linkedin: "https://linkedin.com",
     image: "https://res.cloudinary.com/dzxejgtiw/image/upload/f_auto,q_auto/v1776618820/IMG_0091_xszrev.jpg",
     tags: ["Strategy", "Leadership"],
   },
-  { 
-    name: "Dwaipayan Pal", 
-    role: "Vice President", 
+  {
+    name: "Dwaipayan Pal",
+    role: "Vice President",
     linkedin: "https://linkedin.com",
     image: "https://res.cloudinary.com/dzxejgtiw/image/upload/f_auto,q_auto/v1776617352/53372_ctbxv6.png",
     tags: ["Operations", "Product"],
   },
-  { 
-    name: "Aditya Singh", 
-    role: "Vice President", 
+  {
+    name: "Aditya Singh",
+    role: "Vice President",
     linkedin: "https://linkedin.com",
     image: "https://res.cloudinary.com/dzxejgtiw/image/upload/f_auto,q_auto/v1776617404/passport_size_2_lvgpx2.jpg",
     tags: ["Growth", "Execution"],
   },
-  { 
-    name: "Sheen Rizvi", 
-    role: "Chief of Marketing", 
+  {
+    name: "Sheen Rizvi",
+    role: "Chief of Marketing",
     linkedin: "https://linkedin.com",
     image: "https://res.cloudinary.com/dzxejgtiw/image/upload/f_auto,q_auto/v1776618874/IMG_2670_yv5rzd.jpg",
     tags: ["Marketing", "Brand"],
   },
-  { 
-    name: "Anany Mishra", 
-    role: "Chief of Sponsorship", 
+  {
+    name: "Ananya Mishra",
+    role: "Chief of Sponsorship",
     linkedin: "https://linkedin.com",
     image: "https://res.cloudinary.com/dzxejgtiw/image/upload/v1777046721/IMG_1153.JPG_cnzivt.jpg",
     tags: ["Partnerships", "Revenue"],
   },
-  { 
-    name: "Himani Puri", 
-    role: "Chief of Management", 
+  {
+    name: "Himani Puri",
+    role: "Chief of Management",
     linkedin: "https://linkedin.com",
     image: "https://res.cloudinary.com/dzxejgtiw/image/upload/f_auto,q_auto/v1776617453/IMG_9273_fdnjo7.png",
     tags: ["Management", "Planning"],
   },
-  { 
-    name: "Parth Gaur", 
-    role: "Chief of Performance Monitoring", 
+  {
+    name: "Parth Gaur",
+    role: "Chief of Performance Monitoring",
     linkedin: "https://linkedin.com",
     image: "https://res.cloudinary.com/dzxejgtiw/image/upload/f_auto,q_auto/v1776617730/1000081573.jpg_gky8cr.jpg",
     tags: ["Analytics", "KPIs"],
   },
-  { 
-    name: "Harmanpreet Singh", 
-    role: "Chief of Industry Relations", 
+  {
+    name: "Harmanpreet Singh",
+    role: "Chief of Industry Relations",
     linkedin: "https://linkedin.com",
     image: "https://res.cloudinary.com/dzxejgtiw/image/upload/v1777046723/IMG_20260419_230130_id4osp.png",
     tags: ["Networking", "Industry"],
   },
-  { 
-    name: "Divyansh Maurya", 
-    role: "Manager R&D", 
+  {
+    name: "Divyansh Maurya",
+    role: "Manager R&D",
     linkedin: "https://linkedin.com",
     image: "https://res.cloudinary.com/dzxejgtiw/image/upload/f_auto,q_auto/v1776617818/Div_lhufgy.webp",
     tags: ["Research", "Innovation"],
@@ -414,7 +414,7 @@ export const TeamPage = () => {
               })}
             >
               <img src={member.image} alt={member.name} className="tp-main-img" />
-              
+
               {/* Overlay gradient */}
               <div className="tp-img-overlay" />
 
