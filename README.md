@@ -1,16 +1,46 @@
-# React + Vite
+# FORGE
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A premium, modern, and highly interactive web platform built with React, Vite, Framer Motion, and Three.js. This project embodies a "tech-native" and minimalist aesthetic, designed to deliver a high-performance, cinematic user experience.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Premium Aesthetics:** A refined, minimalist light-themed design with seamless glassmorphism and modern typography.
+- **Dynamic Animations:** Smooth, high-performance interactions and micro-animations powered by [Framer Motion](https://www.framer.com/motion/).
+- **3D Experiences:** Incorporates cinematic 3D elements, such as the F1 Intelligence Dashboard, using [React Three Fiber](https://r3f.docs.pmnd.rs/getting-started/introduction) and Three.js.
+- **Interactive UI:** Features a sophisticated Skill Ticker, dynamic Preloader, and immersive War Room detail pages.
+- **Responsive Layout:** Fully optimized for both desktop and mobile devices.
+- **Modern Routing:** Structured navigation using React Router.
 
-## React Compiler
+## 🚀 Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Framework:** [React](https://react.dev/)
+- **Build Tool:** [Vite](https://vitejs.dev/)
+- **Animations:** Framer Motion
+- **3D Graphics:** Three.js, React Three Fiber, React Three Drei
+- **Icons:** Lucide React, React Icons
 
-## Expanding the ESLint configuration
+## 📦 Installation
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Clone the repository.
+2. Install the dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+## 🛠️ Scripts
+
+- `npm run dev` - Starts the development server with HMR.
+- `npm run build` - Builds the application for production.
+- `npm run preview` - Previews the production build locally.
+- `npm run lint` - Runs ESLint to check for code issues.
+
+## 🤝 Contributing
+
+Contributions are welcome. Please ensure that all code follows the established premium aesthetic and linting guidelines.
+
+---
+*Built with passion and a pursuit of visual excellence.*
